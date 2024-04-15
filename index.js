@@ -176,7 +176,7 @@ function createBot() {
 
 function sendToMinecraft(message, discordUsername) {
   if (message === `/move`) {
-    bot.chat(`/spawn`);
+    //bot.chat(`/spawn`);
     bot.setControlState("forward", true);
     setTimeout(() => {
       bot.setControlState("forward", false);
