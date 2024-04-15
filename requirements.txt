@@ -1,0 +1,10 @@
+@ngrok/ngrok
+discord.js
+mineflayer
+mineflayer-pathfinder
+prismarine-viewer
+minecraft-data
+
+Install these using npm install 
+
+example: npm install @ngrok/ngrok and the others when one finishes installing
