@@ -21,11 +21,11 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 ## -- Installation -- 🛠️
 Clone the repository:
 ```
-git clone https://github.com/your-username/minecraft-discord-bot.git
+git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
 ```
 Install the required dependencies:
 ```
-cd minecraft-discord-bot
+cd Mineflayer-Discord-bridge
 npm install -r requirements.txt
 ```
 To get the discord channel id and discord user ids:
@@ -41,8 +41,8 @@ To get the discord channel id and discord user ids:
   ```
   pkg update && pkg upgrade
   pkg install nodejs git
-  git clone https://github.com/your-username/minecraft-discord-bot.git
-  cd minecraft-discord-bot
+  git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
+  cd Mineflayer-Discord-bridge
   npm install -r requirements.txt
    ```
 To get the discord channel id and discord user ids:
