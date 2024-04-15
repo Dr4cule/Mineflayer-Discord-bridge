@@ -1,0 +1,20 @@
+{
+    "ngrokAuthToken": "Paste_your_ngrok_auth_token_here",
+    "botUsername": "Your_bot_username",
+    "botPswd": "Your_bot_password",
+    "serverHost": "Your_server_ip",
+    "serverPort": 25565,
+    "serverVersion": "1.20.1",
+    "botAuth": "offline",
+    "ign": "Your_bot_ign_if_using_online/microsoft_account else leave as it is",
+    "botPass": "if you want to use a mojang account change botAuth to microsoft and in place of bot username put your email and its password here else leave as it is",
+    "discordToken": "Your_discord_bot_token",
+    "discordChannelId": "Your_discord_channel_id",
+    "allowedUserIds": [
+      "Your_allowed_user_id_to_use_bot",
+      "Your_allowed_user_id_to_use_bot_2"
+    ],
+    "BlockedMessages": [
+      "dwadbdwaubd"
+    ]
+  }
