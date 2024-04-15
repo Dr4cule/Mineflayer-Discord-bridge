@@ -12,6 +12,10 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 - Automatically reconnects to the Minecraft server if the bot disconnects 🔄
 - Has prismarine-viewer to look at what your bot is up to, right click on the map to move bot to that point 😮
 
+![MineflayerDiscordBot](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ef396ac-2d7e-4945-a4ef-dc7341a46240)
+![Prismarine Viewer](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/fe25df04-a17d-44e6-a900-095efe67cbf4)
+
+
 ## -- Requirements -- 📋
 - Node.js (version 19 or higher) 🚀
 - An ngrok account and authentication token 🔑
