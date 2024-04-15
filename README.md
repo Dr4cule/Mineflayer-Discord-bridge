@@ -10,6 +10,7 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 - Sends updates about the bot's status and the players in the Minecraft server to the Discord channel 📢
 - Blocks certain messages from being sent to the Minecraft server 🛑
 - Automatically reconnects to the Minecraft server if the bot disconnects 🔄
+- Has prismarine-viewer to look at what your bot is up to, right click on the map to move bot to that point 😮
 
 ## -- Requirements -- 📋
 - Node.js (version 19 or higher) 🚀
