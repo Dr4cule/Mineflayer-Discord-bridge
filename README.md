@@ -26,7 +26,7 @@ git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
 Install the required dependencies:
 ```
 cd Mineflayer-Discord-bridge
-npm install -r requirements.txt
+npm install
 ```
 To get the discord channel id and discord user ids:
 - go to discord settings, go to advance and enable developer mode then 🔧
@@ -43,7 +43,7 @@ To get the discord channel id and discord user ids:
   pkg install nodejs git
   git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
   cd Mineflayer-Discord-bridge
-  npm install -r requirements.txt
+  npm install
    ```
 To get the discord channel id and discord user ids:
 - go to discord settings, go to advance and enable developer mode then 🔧
