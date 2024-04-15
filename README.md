@@ -33,6 +33,24 @@ To get the discord channel id and discord user ids:
 - right click on discord users and copy their id and paste it in the config file where it says to paste for them to be able to use the
 - bot and its commands. 🙋‍♂️
 
+## -- Installation for Termux -- 🤖
+- Install Termux from the Play Store or F-Droid.
+- Open Termux and run the following commands:
+  
+  ```
+  pkg update && pkg upgrade
+  pkg install nodejs git
+  git clone https://github.com/your-username/minecraft-discord-bot.git
+  cd minecraft-discord-bot
+  npm install -r requirements.txt
+   ```
+To get the discord channel id and discord user ids:
+- go to discord settings, go to advance and enable developer mode then 🔧
+- right click on the discord channel, copy its id and paste it in the config file where it says to paste 📂
+- right click on discord users and copy their id and paste it in the config file where it says to paste for them to be able to use the
+- bot and its commands. 🙋‍♂️  
+  
+- Follow the rest of the steps as 
 ## -- Ngrok -- 🌐
 - To get your ngrok token visit [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken), click on the link after you log in if you are lost. 🔑
 - Paste your ngrok token to the specified place in ```config.json``` 📝
