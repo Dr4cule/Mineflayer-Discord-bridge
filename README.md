@@ -101,12 +101,14 @@ node index.js
   
 # Available commands:
 
-- ```/move```: Moves the bot forward for 5 seconds. 🚶‍♂️
+- ```/antiafk```: Moves the bot every 30 seconds, customize in code to your need. 🚶‍♂️
 - ```/listtab```: Sends a list of players currently in the Minecraft server to the Discord channel. 📋
 - ```/reconnect```: Disconnects the bot from the Minecraft server and attempts to reconnect. 🔁
 - ```/Rclickslot <slot>```: Right-clicks the specified hotbar slot. 🖱️ example: ```/Rclickslot 4```
 - ```/Lclickslot <slot>```: Left-clicks the specified hotbar slot. 🖱️  example: ```/Lclickslot 12```
 - ```/closewindow```: Closes the currently open window. 🔒
+  
+![slotinfo](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ee78540-c7cb-42b4-9923-422119b13f97)
 
 - You can also set a pattern of clicks the bot should initiate on login to directly join in to the sub-server of a minecraft server. 🤖
 - Example commented out in ```index.js```
