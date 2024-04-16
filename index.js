@@ -108,7 +108,9 @@ function createBot() {
   bot.on("login", () => {
     sendToDiscord("Bot logged in 🙌");
     bot.chat(`/register ${config.botPswd} ${config.botPswd}`);
-    bot.chat(`/login ${config.botPswd}`);
+    setTimeout(() => {
+      bot.chat(`/login ${config.botPswd}`);
+    }, 3000);
    // let x;
 //   x = setInterval(() => {
 //     sendToMinecraft("/Rclickslot 4");
@@ -221,6 +223,10 @@ function sendToMinecraft(message, discordUsername) {
     }
   } else if (message === "/closewindow") {
     bot.closeWindow(bot.currentWindow);
+  } else if (message === "/health") {
+    const health = bot.health;
+    const healthValue = (health / 2).toFixed(1);
+    sendToDiscord(`Bot health: ${healthValue} ❤️`);
   } else {
     bot.chat(`${message}`);
      // bot.chat(`${discordUsername} » ${message}`);  // <-- uncomment and comment the upper line if you want the bot to send messages with dc username
