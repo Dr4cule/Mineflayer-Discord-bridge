@@ -19,7 +19,7 @@ ngrok.connect({ addr: 3000 })
   .then(listener => {
     console.log(`Ingress established at: ${listener.url()}`);
     setInterval(() => {
-      sendToDiscord(`View what/where the bot doing/is at: ${listener.url()}`);
+      sendToDiscord(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
     }, 30 * 1000);
   })
   .catch(error => console.error('Error starting ngrok:', error));
@@ -32,6 +32,8 @@ const { GoalBlock } = require('mineflayer-pathfinder').goals
 
 let bot;
 let discordClient;
+let isAntiAfkActive = false;
+let antiAfkInterval;
 
 function createBot() {
   const botUsername1 = config.botUsername;
@@ -57,7 +59,7 @@ function createBot() {
   bot.loadPlugin(pathfinder);
 
   bot.once("spawn", () => {
-    sendToDiscord("Bot spawned");
+    sendToDiscord("Bot spawned 🙌");
     mineflayerViewer(bot, { port: 3000 });
     const mcData = require('minecraft-data')(bot.version)
     const defaultMove = new Movements(bot, mcData)
@@ -94,15 +96,15 @@ function createBot() {
 
   bot.on("windowOpen", () => {
     //bot.simpleClick.leftMouse(12);
-    sendToDiscord(`Window opened`);
+    sendToDiscord(`Window opened 🔓`);
   });
 
   bot.on("windowClose", () => {
-    sendToDiscord(`Window closed`);
+    sendToDiscord(`Window closed 🔐`);
   });
 
   bot.on("login", () => {
-    sendToDiscord("Bot logged in");
+    sendToDiscord("Bot logged in 🙌");
     //bot.chat(`/register ${config.botPswd} ${config.botPswd}`);
     bot.chat(`/login ${config.botPswd}`);
    // let x;
@@ -120,7 +122,7 @@ function createBot() {
       setInterval(() => {
             const playerList = Object.keys(bot.players).join(', ');
             const totalPlayers = Object.keys(bot.players).length;
-            sendToDiscord(`Players in tab list (${totalPlayers}): ${playerList}`); 
+            sendToDiscord(`Players 👥 in tab list (${totalPlayers}): ${playerList}`); 
         }, 5 * 60 * 1000);
     setTimeout(() => {
       bot.setControlState("forward", true);
@@ -154,43 +156,45 @@ function createBot() {
         }
   
       if (sender === null) {
-        sendToDiscord(`[Server] ${usernameStr}`);
+        sendToDiscord(`[Server] 🗣️ ${usernameStr}`);
       } else {
         const playerName = players[sender] || "Unknown";
-        sendToDiscord(`${playerName} » ${usernameStr}`);
+        sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
       }} else {
       console.log("Received a non-string message:", message);
           }
       });
 
   bot.on("error", (err) => {
-    sendToDiscord("Bot encountered an error:", err);
+    sendToDiscord("Bot encountered an error: 😞", err);
   });
 
   bot.on("end", () => {
-    sendToDiscord("Disconnected from the server, attempting to reconnect...");
+    sendToDiscord("Disconnected from the server, attempting to reconnect... 🔄");
     createBot();
   });
 }
 
 function sendToMinecraft(message, discordUsername) {
-  if (message === `/move`) {
-    //bot.chat(`/spawn`);
-    bot.setControlState("forward", true);
-    setTimeout(() => {
-      bot.setControlState("forward", false);
-    }, 5000);
-  } else if (message === "/listtab") {
+    if (message === "/antiafk") {
+        if (isAntiAfkActive) {
+          stopAntiAfkInterval();
+          sendToDiscord("Anti-AFK mode deactivated. 🛑");
+        } else {
+          startAntiAfkInterval();
+          sendToDiscord("Anti-AFK mode activated. 🚀");
+        }
+      } else if (message === "/listtab") {
     const playerList = Object.keys(bot.players).join(", ");
     const totalPlayers = Object.keys(bot.players).length;
-    sendToDiscord(`Players in tab list (${totalPlayers}): ${playerList}`);
+    sendToDiscord(`Players 👥 in tab list (${totalPlayers}): ${playerList}`);
   } else if (message === "/reconnect") {
     bot.end();
   } else if (message.startsWith("/Rclickslot")) {
     const slotNumber = parseInt(message.split(" ")[1]);
     if (!isNaN(slotNumber)) {
         if (slotNumber > 8) {
-          sendToDiscord("There are only 9(0 to 8) slots in the hotbar!");
+          sendToDiscord("There are only 9(0 to 8) slots in the hotbar! 🤔");
         } else {
           bot.setQuickBarSlot(slotNumber);
           bot.activateItem();
@@ -209,11 +213,29 @@ function sendToMinecraft(message, discordUsername) {
   }
 }
 
+function startAntiAfkInterval() {
+    isAntiAfkActive = true;
+    antiAfkInterval = setInterval(() => {
+      const randomX = Math.floor(Math.random() * 3) - 1;
+      const randomZ = Math.floor(Math.random() * 3) - 1;
+      bot.setControlState('forward', true);
+      setTimeout(() => {
+        bot.setControlState('forward', false);
+        bot.look(Math.random() * 360, Math.random() * 180, false);
+      }, 1000);
+    }, 30 * 1000);
+  }
+  
+  function stopAntiAfkInterval() {
+    isAntiAfkActive = false;
+    clearInterval(antiAfkInterval);
+  }
+
 function sendToDiscord(message) {
   if (discordClient) {
     const channel = discordClient.channels.cache.get(config.discordChannelId);
     if (channel && channel.send) {
-      message = "```fix\n " + message + "\n ```";
+      message = "```fix\n " + message + "\n```";
       channel.send(message);
     }
   }
