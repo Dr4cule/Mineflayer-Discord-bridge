@@ -110,6 +110,8 @@ node index.js
 - ```/Lclickslot <slot>```: Left-clicks the specified hotbar slot. 🖱️  example: ```/Lclickslot 12```
 - ```/closewindow```: Closes the currently open window. 🔒
 - ```/health```: To check the bots health. ❤️
+- ```/inv```: Lists all the items in the inventory along with their slot number. 👀
+- ```/coords```: Gives the coordinates of the bot. 🌐
  
  To do(when repo gets 10 stars) 📙 :      [Basic functions already covered]
   
