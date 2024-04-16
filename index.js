@@ -7,7 +7,7 @@ const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 // Specify your ngrok authentication token directly
 const ngrokAuthToken = config.ngrokAuthToken;
 
-// Create webserver on port 3000
+// Create webserver on port 4000
 http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.end('Congrats you have created an ngrok web server');
