@@ -59,6 +59,8 @@ function createBot() {
   bot.once("spawn", () => {
     sendToDiscord("Bot spawned");
     mineflayerViewer(bot, { port: 3000 });
+    const mcData = require('minecraft-data')(bot.version)
+    const defaultMove = new Movements(bot, mcData)
   bot.on('path_update', (r) => {
     const nodesPerTick = (r.visitedNodes * 50 / r.time).toFixed(2)
    // console.log(`I can get there in ${r.path.length} moves. Computation took ${r.time.toFixed(2)} ms (${nodesPerTick} nodes/tick). ${r.status}`)
@@ -68,9 +70,6 @@ function createBot() {
     }
     bot.viewer.drawLine('path', path, 0xff00ff)
   })
-
-  const mcData = require('minecraft-data')(bot.version)
-  const defaultMove = new Movements(bot, mcData)
 
   bot.viewer.on('blockClicked', (block, face, button) => {
     if (button !== 2) return // only right click
