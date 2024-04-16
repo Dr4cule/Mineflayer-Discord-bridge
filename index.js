@@ -140,9 +140,13 @@ function createBot() {
 
 bot.on("death", () => {
     sendToDiscord("The bot has died. 💀 Respawning...");
-    setTimeout(() => {
-      bot.respawn();
-    }, 3000); // Wait 3 seconds before respawning
+    if (!bot.spawn) {
+      setTimeout(() => {
+        bot.respawn();
+      }, 5000); // Wait 5 seconds before respawning
+    } else {
+      console.log("Bot 🤖 is already respawned, skipping respawn attempt.");
+    }
   });	
 	
   const players = {};
