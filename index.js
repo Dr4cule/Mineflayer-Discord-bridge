@@ -219,13 +219,62 @@ function sendToMinecraft(message, discordUsername) {
 function startAntiAfkInterval() {
     isAntiAfkActive = true;
     antiAfkInterval = setInterval(() => {
-      const randomX = Math.floor(Math.random() * 3) - 1;
-      const randomZ = Math.floor(Math.random() * 3) - 1;
-      bot.setControlState('forward', true);
-      setTimeout(() => {
-        bot.setControlState('forward', false);
-        bot.look(Math.random() * 360, Math.random() * 180, false);
-      }, 1000);
+      const randomX = Math.floor(Math.random() * 10) + 1;
+			const randomZ = Math.floor(Math.random() * 10) + 1;
+
+			bot.setControlState('forward', true);
+			bot.setControlState('sprint', true);
+			bot.setControlState('jump', true);
+			bot.setControlState('right', Math.random() > 0.5);
+			bot.setControlState('left', Math.random() > 0.5);
+
+			bot.look(Math.random() * 180 - 90, 0, true);
+
+			setTimeout(() => {
+				bot.setControlState('forward', false);
+				bot.setControlState('sprint', false);
+				bot.setControlState('jump', false);
+				bot.setControlState('right', false);
+				bot.setControlState('left', false);
+			}, 500);
+
+			bot.setControlState('back', true);
+
+			setTimeout(() => {
+				bot.setControlState('back', false);
+			}, 500);
+
+			bot.setControlState('right', true);
+
+			setTimeout(() => {
+				bot.setControlState('right', false);
+			}, 500);
+      
+			bot.setControlState('left', true);
+
+			setTimeout(() => {
+				bot.setControlState('left', false);
+			}, 500);
+
+			bot.setControlState('jump', true);
+
+			setTimeout(() => {
+				bot.setControlState('jump', false);
+			}, 500);
+
+			bot.setControlState('sprint', true);
+
+			setTimeout(() => {
+				bot.setControlState('sprint', false);
+			}, 500);
+
+			bot.look(Math.random() * 180 - 90, 0, true);
+
+			bot.setControlState('forward', true);
+
+			setTimeout(() => {
+				bot.setControlState('forward', false);
+			}, 500);
     }, 30 * 1000); // <-- antiafk initiate interval 30 seconds, customize it to your needed seconds by replacing 30 with your interval
   }
   
