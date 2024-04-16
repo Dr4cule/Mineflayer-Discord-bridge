@@ -1,10 +1,10 @@
+
+// =========== Ngrok webserver code =========== //
+
 const http = require('http');
 const ngrok = require('@ngrok/ngrok');
 const fs = require('fs');
-
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
-
-// Specify your ngrok authentication token directly
 const ngrokAuthToken = config.ngrokAuthToken;
 
 // Create webserver on port 4000
@@ -23,6 +23,8 @@ ngrok.connect({ addr: 3000 })
     }, 30 * 1000);
   })
   .catch(error => console.error('Error starting ngrok:', error));
+
+// ============ Mineflayer bot code ============== //
 
 const mineflayer = require("mineflayer");
 const { Client, GatewayIntentBits, ActivityType } = require("discord.js");
@@ -243,6 +245,9 @@ function sendToDiscord(message) {
 }
 
 createBot();
+
+// ============== Discord code =============== //
+
 
 discordClient = new Client({
   intents: [
