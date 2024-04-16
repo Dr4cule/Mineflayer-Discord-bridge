@@ -110,7 +110,9 @@ node index.js
 - ```/Lclickslot <slot>```: Left-clicks the specified hotbar slot. 🖱️  example: ```/Lclickslot 12```
 - ```/closewindow```: Closes the currently open window. 🔒
 - ```/health```: To check the bots health. ❤️
-  # To do(when repo gets 10 stars) 📙 :      [Basic functions already covered]
+ 
+ To do(when repo gets 10 stars) 📙 :      [Basic functions already covered]
+  
 - ```/nearby```: Lists players nearby the bot, will be added later.
 - ```/killaura```: Attacks specified entities, will be added later.
 - ```/lookat```: Looks at specified player/entity, will be added later.
