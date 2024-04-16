@@ -230,7 +230,7 @@ function sendToMinecraft(message, discordUsername) {
 function startAntiAfkInterval() {
     isAntiAfkActive = true;
     antiAfkInterval = setInterval(() => {
-      const randomX = Math.floor(Math.random() * 10) + 1;
+                        const randomX = Math.floor(Math.random() * 10) + 1;
 			const randomZ = Math.floor(Math.random() * 10) + 1;
 
 			bot.setControlState('forward', true);
