@@ -107,7 +107,7 @@ function createBot() {
 
   bot.on("login", () => {
     sendToDiscord("Bot logged in 🙌");
-    //bot.chat(`/register ${config.botPswd} ${config.botPswd}`);
+    bot.chat(`/register ${config.botPswd} ${config.botPswd}`);
     bot.chat(`/login ${config.botPswd}`);
    // let x;
 //   x = setInterval(() => {
