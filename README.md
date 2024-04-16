@@ -1,4 +1,6 @@
 # Mineflayer-Discord-bridge 🤖🌍
+![MINEFLAYER-CHATBRIDGE](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/dc6b28ff-1fe1-4651-af6c-3f2fd8e07c67)
+
 A simple mineflayer bot that logs messages and has some cool features 🎉
 
 - This is a Node.js bot that connects to a Minecraft server and a Discord server, allowing users 
