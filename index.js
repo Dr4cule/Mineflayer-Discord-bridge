@@ -248,7 +248,6 @@ createBot();
 
 // ============== Discord code =============== //
 
-
 discordClient = new Client({
   intents: [
     GatewayIntentBits.Guilds,
