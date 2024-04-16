@@ -227,6 +227,12 @@ function sendToMinecraft(message, discordUsername) {
     const health = bot.health;
     const healthValue = (health / 2).toFixed(1);
     sendToDiscord(`Bot health: ${healthValue} ❤️`);
+  } else if (message === "/coords") {
+    const { x, y, z } = bot.entity.position;
+    sendToDiscord(`Bot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`);
+  } else if (message === "/inv") {
+    const inventory = bot.inventory.items().map((item, index) => `${item.name} (Slot ${index})`).join(', ');
+    sendToDiscord(`Bot inventory 👀 : ${inventory}`);
   } else {
     bot.chat(`${message}`);
      // bot.chat(`${discordUsername} » ${message}`);  // <-- uncomment and comment the upper line if you want the bot to send messages with dc username
