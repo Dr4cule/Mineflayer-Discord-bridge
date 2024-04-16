@@ -109,6 +109,12 @@ node index.js
 - ```/Rclickslot <slot>```: Right-clicks the specified hotbar slot. 🖱️ example: ```/Rclickslot 4```
 - ```/Lclickslot <slot>```: Left-clicks the specified hotbar slot. 🖱️  example: ```/Lclickslot 12```
 - ```/closewindow```: Closes the currently open window. 🔒
+- ```/health```: To check the bots health. ❤️
+  # To do(when repo gets 10 stars) 📙 :      [Basic functions already covered]
+- ```/nearby```: Lists players nearby the bot, will be added later.
+- ```/killaura```: Attacks specified entities, will be added later.
+- ```/lookat```: Looks at specified player/entity, will be added later.
+- ```/follow```: Follows specified player, will be added later.
   
 ![slotinfo](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ee78540-c7cb-42b4-9923-422119b13f97)
 
