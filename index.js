@@ -138,6 +138,13 @@ function createBot() {
     // }, 3000);
   });
 
+bot.on("death", () => {
+    sendToDiscord("The bot has died. 💀 Respawning...");
+    setTimeout(() => {
+      bot.respawn();
+    }, 3000); // Wait 3 seconds before respawning
+  });	
+	
   const players = {};
   // chatpattern/regex fucker, avoids unnessary trouble.
 
