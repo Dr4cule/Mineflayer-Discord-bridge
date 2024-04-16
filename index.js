@@ -123,7 +123,7 @@ function createBot() {
             const playerList = Object.keys(bot.players).join(', ');
             const totalPlayers = Object.keys(bot.players).length;
             sendToDiscord(`Players 👥 in tab list (${totalPlayers}): ${playerList}`); 
-        }, 5 * 60 * 1000);
+        }, 5 * 60 * 1000);  // <-- customize it to your need, sends this every 5 minutes, for 2.5min 2.5 * 60 * 1000 ie minutes * seconds * 1000
     setTimeout(() => {
       bot.setControlState("forward", true);
       setTimeout(() => {
@@ -147,7 +147,7 @@ function createBot() {
     delete players[player.uuid];
   });
 
-  bot.on('message', (username, message, sender) => {
+  bot.on('message', (username, message, sender) => {     // I know this looks weird, it worked so I did not touch it, customize this if it dosent work for you
     if (typeof message === 'string') {
       const usernameStr = String(username);
   
@@ -210,7 +210,7 @@ function sendToMinecraft(message, discordUsername) {
     bot.closeWindow(bot.currentWindow);
   } else {
     bot.chat(`${message}`);
-     // bot.chat(`${discordUsername} » ${message}`);
+     // bot.chat(`${discordUsername} » ${message}`);  // <-- uncomment and comment the upper line if you want the bot to send messages with dc username
   }
 }
 
@@ -224,7 +224,7 @@ function startAntiAfkInterval() {
         bot.setControlState('forward', false);
         bot.look(Math.random() * 360, Math.random() * 180, false);
       }, 1000);
-    }, 30 * 1000);
+    }, 30 * 1000); // <-- antiafk initiate interval 30 seconds, customize it to your needed seconds by replacing 30 with your interval
   }
   
   function stopAntiAfkInterval() {
