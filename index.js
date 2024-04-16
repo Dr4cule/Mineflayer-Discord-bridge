@@ -285,14 +285,14 @@ function startAntiAfkInterval() {
 
 			setTimeout(() => {
 				bot.setControlState('forward', false);
-			}, 500);
-    }, 30 * 1000); // <-- antiafk initiate interval 30 seconds, customize it to your needed seconds by replacing 30 with your interval
-  }
+	 		}, 500);
+	}, 30 * 1000); // <-- antiafk initiate interval 30 seconds, customize it to your needed seconds by replacing 30 with your interval
+}
   
-  function stopAntiAfkInterval() {
+function stopAntiAfkInterval() {
     isAntiAfkActive = false;
     clearInterval(antiAfkInterval);
-  }
+}
 
 function sendToDiscord(message) {
   if (discordClient) {
