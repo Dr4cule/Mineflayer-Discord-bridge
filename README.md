@@ -101,7 +101,7 @@ node index.js
   
 # Available commands:
 
-- ```/antiafk```: Moves the bot every 30 seconds, customize in code to your need. 🚶‍♂️
+- ```/antiafk```: Moves the bot every 30 seconds, customize in code to your need. 🚶‍♂️ (dont use if not needed, unstable ⚠️)
 - ```/listtab```: Sends a list of players currently in the Minecraft server to the Discord channel. 📋
 - ```/reconnect```: Disconnects the bot from the Minecraft server and attempts to reconnect. 🔁
 - ```/Rclickslot <slot>```: Right-clicks the specified hotbar slot. 🖱️ example: ```/Rclickslot 4```
