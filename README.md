@@ -33,6 +33,8 @@ Install the required dependencies:
 ```
 cd Mineflayer-Discord-bridge
 npm install @ngrok/ngrok discord.js mineflayer@latest mineflayer-pathfinder prismarine-viewer minecraft-data
+ // or use
+npm install
 ```
 - Note: If you are facing issues with installing, try installing one package at a time and ```npm audit fix --force```
   
@@ -52,6 +54,8 @@ To get the discord channel id and discord user ids:
   git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
   cd Mineflayer-Discord-bridge
   npm install @ngrok/ngrok discord.js mineflayer@latest mineflayer-pathfinder prismarine-viewer minecraft-data
+   // or use
+  npm install
   ```
   - Note: If you are facing issues with installing, try installing one package at a time and ```npm audit fix --force```
     
