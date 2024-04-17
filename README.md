@@ -112,6 +112,8 @@ node index.js
 - ```/health```: To check the bots health. ❤️
 - ```/inv```: Lists all the items in the inventory along with their slot number. 👀
 - ```/coords```: Gives the coordinates of the bot. 🌐
+- ```/yell ```: Sends message with the username of discord message sender ```config.botUsername » ${discord_username} 🗣️ their_message```
+                 example: ```PizzAllDay7 » Dr4cule 🗣️ Hello world```
  
  To do(when repo gets 10 stars) 📙 :      [Basic functions already covered]
   
