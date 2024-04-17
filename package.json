@@ -1,0 +1,19 @@
+{
+  "name": "Mineflayer-Discord-bridge",
+  "version": "1.0.0",
+  "description": "A simple but not soo simple mineflayer-discord bot",
+  "main": "index.js",
+  "scripts": {
+    "install-packages": "npm install"
+  },
+  "dependencies": {
+    "@ngrok/ngrok": "^4.3.1",
+    "discord.js": "^14.7.1",
+    "mineflayer": "^4.5.1",
+    "mineflayer-pathfinder": "^2.4.2",
+    "prismarine-viewer": "^1.24.0",
+    "minecraft-data": "^3.3.0"
+  },
+  "author": "Dr4cule",
+  "license": "MIT"
+}
