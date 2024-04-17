@@ -346,5 +346,6 @@ discordClient.on("messageCreate", (message) => {
     config.allowedUserIds.includes(message.author.id)
   ) {
     sendToMinecraft(message.content, message.author.username);
+    message.react("✅");
   }
 });
