@@ -11,7 +11,8 @@
     "discord.js": "14.14.1",
     "mineflayer": "4.20.0",
     "mineflayer-pathfinder": "2.4.5",
-    "prismarine-viewer": "1.28.0"
+    "prismarine-viewer": "1.28.0",
+    "minecraft-data": "3.64.0"
   },
   "author": "Dr4cule",
   "license": "MIT"
