@@ -60,6 +60,7 @@ To get the discord channel id and discord user ids:
   npm ci
   ```
   - Use the one below if you want the latest versions of dependencies installed (not recommended, causes errors sometimes)
+    
   ```
   npm install @ngrok/ngrok discord.js mineflayer@latest mineflayer-pathfinder prismarine-viewer minecraft-data
    // or use
