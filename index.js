@@ -192,7 +192,7 @@ bot.on("death", () => {
 }
 
 function sendToMinecraft(message, discordUsername) {
-    if (message === "!antiafk") {
+    if (message === "/antiafk") {
         if (isAntiAfkActive) {
           stopAntiAfkInterval();
           sendToDiscord("Anti-AFK mode deactivated. 🛑");
@@ -200,13 +200,13 @@ function sendToMinecraft(message, discordUsername) {
           startAntiAfkInterval();
           sendToDiscord("Anti-AFK mode activated. 🚀");
         }
-      } else if (message === "!listtab") {
+      } else if (message === "/listtab") {
     const playerList = Object.keys(bot.players).join(", ");
     const totalPlayers = Object.keys(bot.players).length;
     sendToDiscord(`Players 👥 in tab list (${totalPlayers}): ${playerList}`);
-  } else if (message === "!reconnect") {
+  } else if (message === "/reconnect") {
     bot.end();
-  } else if (message.startsWith("!Rclickslot")) {
+  } else if (message.startsWith("/Rclickslot")) {
     const slotNumber = parseInt(message.split(" ")[1]);
     if (!isNaN(slotNumber)) {
         if (slotNumber > 8) {
@@ -216,26 +216,26 @@ function sendToMinecraft(message, discordUsername) {
           bot.activateItem();
         }
       }
-  } else if (message.startsWith("!Lclickslot")) {
+  } else if (message.startsWith("/Lclickslot")) {
     const slotNumber = parseInt(message.split(" ")[1]);
     if (!isNaN(slotNumber)) {
       bot.simpleClick.leftMouse(slotNumber, 0, 0);
     }
-  } else if (message === "!closewindow") {
+  } else if (message === "/closewindow") {
     bot.closeWindow(bot.currentWindow);
-  } else if (message === "!health") {
+  } else if (message === "/health") {
     const health = bot.health;
     const healthValue = (health / 2).toFixed(1);
     sendToDiscord(`Bot health: ${healthValue} ❤️`);
-  } else if (message === "!coords") {
+  } else if (message === "/coords") {
     const { x, y, z } = bot.entity.position;
     sendToDiscord(`Bot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`);
-  } else if (message === "!inv") {
+  } else if (message === "/inv") {
     const inventory = bot.inventory.items().map((item, index) => `${item.name} (Slot ${index})`).join(', ');
     sendToDiscord(`Bot inventory 👀 : ${inventory}`);
-  }  else if (message.startsWith("!yell ")) {
+  }  else if (message.startsWith("/yell ")) {
   const yellMessage = message.slice(6);
-  bot.chat(`${discordUsername} » ${yellMessage}`);
+  bot.chat(`${discordUsername} 🗣️ ${yellMessage}`);
   } else {
     bot.chat(`${message}`);
   }
