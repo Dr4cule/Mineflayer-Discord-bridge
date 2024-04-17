@@ -32,7 +32,7 @@ git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
 Install the required dependencies:
 ```
 cd Mineflayer-Discord-bridge
-npm ci
+npm install
 ```
 
  - Use the one below if you want dependencies same as mine installed 
