@@ -234,8 +234,8 @@ function sendToMinecraft(message, discordUsername) {
     const inventory = bot.inventory.items().map((item, index) => `${item.name} (Slot ${index})`).join(', ');
     sendToDiscord(`Bot inventory 👀 : ${inventory}`);
   }  else if (message.startsWith("/yell ")) {
-  const yellMessage = message.slice(6);
-  bot.chat(`${discordUsername} 🗣️ ${yellMessage}`);
+     const yellMessage = message.slice(6);
+     bot.chat(`${discordUsername} 🗣️ ${yellMessage}`);
   } else {
     bot.chat(`${message}`);
   }
