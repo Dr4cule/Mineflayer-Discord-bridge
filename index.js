@@ -203,7 +203,9 @@ function createBot() {
 
 	bot.on("end", () => {
 		sendToDiscord("Disconnected from the server, attempting to reconnect... 🔄");
-		bot.viewer.close();
+		if (bot.viewer) {
+			bot.viewer.close();
+		}
 		createBot();
 	});
 }
