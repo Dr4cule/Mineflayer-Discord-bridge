@@ -100,7 +100,7 @@ Configure ```config.json``` file with your requirements: 🔧
 - ```botPswd```: The password for the bot's Minecraft account.
 - ```serverHost```: The hostname of the Minecraft server.
 - ```serverPort```: The port number of the Minecraft server.
-- ```serverVersion```: The version of the Minecraft server.
+- ```serverVersion```: The version of the Minecraft server / Mineflayer bot version, make sure the version you put here is allowed by the server.
 - ```botAuth```: The authentication method for the bot (either "offline" or "microsoft").
 - ```botPass```: The password for the bot's Minecraft account.
 - ```discordToken```: The authentication token for the Discord bot.
