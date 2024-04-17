@@ -125,6 +125,7 @@ node index.js
 - ```/health```: To check the bots health. ❤️
 - ```/inv```: Lists all the items in the inventory along with their slot number. 👀
 - ```/coords```: Gives the coordinates of the bot. 🌐
+- ```/move```: To make the bot move forwards for 5 seconds. 🏃‍♂️
 - ```/yell ```: Sends message with the username of discord message sender. (botname » dcmsgsender 🗣️ msg)
  example: ```/yell Hello world``` -output-> ```PizzAllDay7 » Dr4cule 🗣️ Hello world```
  
