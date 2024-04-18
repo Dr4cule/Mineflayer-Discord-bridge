@@ -61,6 +61,7 @@ To get the discord channel id and discord user ids:
   cd Mineflayer-Discord-bridge
   npm install
   ```
+  
   - Use the one below if you want dependencies same as mine installed 
     
   ```
