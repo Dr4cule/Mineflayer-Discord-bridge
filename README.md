@@ -136,6 +136,7 @@ node index.js
 - ```/tocmd```: Transfers control and chats to console, only available in discord. 👇
 - ```/todis```: Transfers control and chats to discord, only available in console. ☝️
 - ```/cmdhelp```: Lists all the available commands. ✅
+- ```/fpull```: To snatch controls from discord from console without having to use ```/tocmd``` in discord, only available in console. 🤩
 - ```/yell ```: Sends message with the username of discord message sender. (botname » dcmsgsender 🗣️ msg)
  example: ```/yell Hello world``` -output-> ```PizzAllDay7 » Dr4cule 🗣️ Hello world```
  
