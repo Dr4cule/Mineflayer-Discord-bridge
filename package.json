@@ -9,10 +9,12 @@
   "dependencies": {
     "@ngrok/ngrok": "1.2.0",
     "discord.js": "14.14.1",
+    "minecraft-data": "3.64.1",
     "mineflayer": "4.20.0",
+    "mineflayer-armor-manager": "^2.0.1",
+    "mineflayer-auto-eat": "^3.3.6",
     "mineflayer-pathfinder": "2.4.5",
-    "prismarine-viewer": "1.28.0",
-    "minecraft-data": "3.64.1"
+    "prismarine-viewer": "1.28.0"
   },
   "author": "Dr4cule",
   "license": "MIT"
