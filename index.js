@@ -309,8 +309,12 @@ async function sendToMinecraft(message, discordUsername) {
 				bot.simpleClick.leftMouse(slotNumber, 0, 0);
 			}
 		}
-	} else if (message === "/closewindow") {
-		bot.closeWindow(bot.currentWindow);
+	} else if (input === "/closewindow") {
+		if (bot.currentWindow) {
+			bot.closeWindow(bot.currentWindow);
+		} else {
+			sendToDiscord("No windows are currently open. 📭");
+		}
 	} else if (message === "/health") {
 		const health = bot.health;
 		const healthValue = (health / 2).toFixed(1);
@@ -496,7 +500,11 @@ rl.on('line', (input) => {
 				}
 			}
 		} else if (input === "/closewindow") {
-			bot.closeWindow(bot.currentWindow);
+			if (bot.currentWindow) {
+				bot.closeWindow(bot.currentWindow);
+			} else {
+				console.log("No windows are currently open. 📭");
+			}
 		} else if (input === "/health") {
 			const health = bot.health;
 			const healthValue = (health / 2).toFixed(1);
