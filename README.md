@@ -134,7 +134,7 @@ node index.js
 - ```/move```: To make the bot move forwards for 5 seconds. 🏃‍♂️
 - ```/hunger```: Gives the bots hunger index number. 🍖
 - ```/tocmd```: Transfers control and chats to console, only available in discord. 👇
-- ```/todis```: Gives control and streams chat to discord, only available in console. ☝️
+- ```/todis```: Transfers control and chats to discord, only available in console. ☝️
 -```/cmdhelp```: Lists all the available commands. ✅
 - ```/yell ```: Sends message with the username of discord message sender. (botname » dcmsgsender 🗣️ msg)
  example: ```/yell Hello world``` -output-> ```PizzAllDay7 » Dr4cule 🗣️ Hello world```
