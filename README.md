@@ -128,6 +128,7 @@ node index.js
 - ```/inv```: Lists all the items in the inventory along with their slot number. 👀
 - ```/coords```: Gives the coordinates of the bot. 🌐
 - ```/move```: To make the bot move forwards for 5 seconds. 🏃‍♂️
+- ```/hunger```: Gives the bots hunger index number. 🍖
 - ```/yell ```: Sends message with the username of discord message sender. (botname » dcmsgsender 🗣️ msg)
  example: ```/yell Hello world``` -output-> ```PizzAllDay7 » Dr4cule 🗣️ Hello world```
  
@@ -137,6 +138,7 @@ node index.js
 - ```/killaura```: Attacks specified entities, will be added later.
 - ```/lookat```: Looks at specified player/entity, will be added later.
 - ```/follow```: Follows specified player, will be added later.
+- ```/autoeat```: Eats when hungry on its own, will add later.
   
 ![slotinfo](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ee78540-c7cb-42b4-9923-422119b13f97)
 
