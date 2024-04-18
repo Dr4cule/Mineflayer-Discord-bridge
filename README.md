@@ -53,16 +53,16 @@ To get the discord channel id and discord user ids:
 ## -- Installation for Termux -- 🤖
 - Install Termux from the Play Store or F-Droid.
 - Open Termux and run the following commands:
-  
-  ```
+
+```
   pkg update && pkg upgrade
   pkg install nodejs git
   git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
   cd Mineflayer-Discord-bridge
   npm install
-  ```
+```
   
-  - Use the one below if you want dependencies same as mine installed 
+ - Use the one below if you want dependencies same as mine installed 
     
   ```
   npm ci
