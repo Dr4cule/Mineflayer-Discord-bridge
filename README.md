@@ -138,7 +138,6 @@ node index.js
 - ```/killaura```: Attacks specified entities, will be added later.
 - ```/lookat```: Looks at specified player/entity, will be added later.
 - ```/follow```: Follows specified player, will be added later.
-- ```/autoeat```: Eats when hungry on its own, will add later.
   
 ![slotinfo](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ee78540-c7cb-42b4-9923-422119b13f97)
 
