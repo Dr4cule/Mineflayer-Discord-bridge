@@ -7,25 +7,32 @@ const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const ngrokAuthToken = config.ngrokAuthToken;
 
 // Create webserver on port 4000
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
 	res.writeHead(200, {
 		'Content-Type': 'text/html'
 	});
 	res.end('Congrats you have created an ngrok web server');
-}).listen(4000, () => console.log('Node.js web server at 4000 is running...'));
+});
+
+server.listen(4000, () => console.log('Node.js web server at 4000 is running...'));
 
 // Get your endpoint online
-ngrok.authtoken(ngrokAuthToken);
-ngrok.connect({
-		addr: 3000
-	})
-	.then(listener => {
+async function startNgrok() {
+	try {
+		await ngrok.authtoken(ngrokAuthToken);
+		const listener = await ngrok.connect({
+			addr: 3000
+		});
 		console.log(`Ingress established at: ${listener.url()}`);
 		setInterval(() => {
 			sendToDiscord(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
 		}, 30 * 1000);
-	})
-	.catch(error => console.error('Error starting ngrok:', error));
+	} catch (error) {
+		console.error('Error starting ngrok:', error);
+	}
+}
+
+startNgrok();
 
 // ============ Mineflayer bot code ============== //
 
@@ -49,23 +56,15 @@ let discordClient;
 let isAntiAfkActive = false;
 let antiAfkInterval;
 
-function createBot() {
-	const botUsername1 = config.botUsername;
-	const serverHost1 = config.serverHost;
-	const serverPort1 = config.serverPort;
-	const version1 = config.serverVersion;
-	const auth = config.botAuth;
-	const ign = config.ign;
-	const password = config.botPass;
+async function createBot() {
 	bot = mineflayer.createBot({
-		host: serverHost1,
-		port: serverPort1,
-		username: botUsername1,
-		version: version1,
-		auth: auth,
-		ign: ign,
-		password: password,
-		// keepalive: 60 * 1000,
+		host: config.serverHost,
+		port: config.serverPort,
+		username: config.botUsername,
+		version: config.serverVersion,
+		auth: config.botAuth,
+		ign: config.ign,
+		password: config.botPass,
 		autoReconnect: true,
 		reconnectTimer: 5 * 1000,
 	});
@@ -81,7 +80,7 @@ function createBot() {
 		const defaultMove = new Movements(bot, mcData)
 		bot.on('path_update', (r) => {
 			const nodesPerTick = (r.visitedNodes * 50 / r.time).toFixed(2)
-			// console.log(`I can get there in ${r.path.length} moves. Computation took ${r.time.toFixed(2)} ms (${nodesPerTick} nodes/tick). ${r.status}`)
+			//console.log(`I can get there in ${r.path.length} moves. Computation took ${r.time.toFixed(2)} ms (${nodesPerTick} nodes/tick). ${r.status}`)
 			const path = [bot.entity.position.offset(0, 0.5, 0)]
 			for (const node of r.path) {
 				path.push({
@@ -97,7 +96,6 @@ function createBot() {
 			if (button !== 2) return // only right click
 
 			const p = block.position.offset(0, 1, 0)
-
 			bot.pathfinder.setMovements(defaultMove)
 			bot.pathfinder.setGoal(new GoalBlock(p.x, p.y, p.z))
 		})
@@ -114,21 +112,18 @@ function createBot() {
 		//   }, 6 * 1000);
 	});
 
-	bot.on("windowOpen", () => {
-		//bot.simpleClick.leftMouse(12);
-		sendToDiscord(`Window opened 🔓`);
-	});
-
-	bot.on("windowClose", () => {
-		sendToDiscord(`Window closed 🔐`);
-	});
+	bot.on("windowOpen", () => sendToDiscord(`Window opened 🔓`));
+	bot.on("windowClose", () => sendToDiscord(`Window closed 🔐`));
 
 	bot.on("login", () => {
 		sendToDiscord("Bot logged in 🙌");
 		bot.chat(`/register ${config.botPswd} ${config.botPswd}`);
+		setTimeout(() => bot.chat(`/login ${config.botPswd}`), 3000);
+		setInterval(() => sendPlayerListToDiscord(), 5 * 60 * 1000); // <-- customize it to your need, sends this every 5 minutes
 		setTimeout(() => {
-			bot.chat(`/login ${config.botPswd}`);
-		}, 3000);
+			bot.setControlState("forward", true);
+			setTimeout(() => bot.setControlState("forward", false), 5000);
+		}, 1000);
 		// let x;
 		//   x = setInterval(() => {
 		//     sendToMinecraft("/Rclickslot 4");
@@ -141,102 +136,75 @@ function createBot() {
 		//     clearInterval(x);
 		//     console.log("10 seconds have passed, interval stopped.");
 		//   }, 6 * 1000);
-		setInterval(() => {
-			sendPlayerListToDiscord();
-		}, 5 * 60 * 1000); // <-- customize it to your need, sends this every 5 minutes, for 2.5min 2.5 * 60 * 1000 ie minutes * seconds * 1000
-		setTimeout(() => {
-			bot.setControlState("forward", true);
-			setTimeout(() => {
-				bot.setControlState("forward", false);
-			}, 5000);
-		}, 1000);
 		// sendToMinecraft("/Rclickslot 4");
 		// setTimeout(() => {
 		//     sendToMinecraft("/Lclickslot 12");  <- example for how to automate intial navigation pattern to enter sub-server
 		// }, 3000);
 	});
 
-	bot.on("death", () => {
+	bot.on("death", async () => {
 		sendToDiscord("The bot has died. 💀 Respawning...");
 		if (!bot.spawn) {
-			setTimeout(() => {
-				bot.respawn();
-			}, 5000); // Wait 5 seconds before respawning
+			await sleep(5000); // Wait 5 seconds before respawning
+			bot.respawn();
 		} else {
 			console.log("Bot 🤖 is already respawned, skipping respawn attempt.");
 		}
 	});
 
 	const players = {};
-	// chatpattern/regex fucker, avoids unnessary trouble.
 
 	bot.on("playerJoined", (player) => {
 		players[player.uuid] = player.username;
 	});
-
 	bot.on("playerLeft", (player) => {
 		delete players[player.uuid];
 	});
 
-	bot.on('message', (username, message, sender) => { // I know this looks weird, it worked so I did not touch it, customize this if it dosent work for you
+	bot.on('message', (username, message, sender) => {
 		if (typeof message === 'string') {
 			const usernameStr = String(username);
+			if (config.BlockedMessages.some(blockedMessage => usernameStr.includes(blockedMessage)) || usernameStr.length === 0) return;
 
-			if (config.BlockedMessages.some(blockedMessage => usernameStr.includes(blockedMessage)) || usernameStr.length === 0) {
-				return;
-			}
-
-			if (sender === null) {
-				sendToDiscord(`[Server] 🗣️ ${usernameStr}`);
-			} else {
-				const playerName = players[sender] || "Unknown";
-				sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
-			}
+			const playerName = sender ? (players[sender] || "Unknown") : "[Server]";
+			sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
 		} else {
 			console.log("Received a non-string message:", message);
 		}
 	});
 
-	bot.on("error", (err) => {
-		sendToDiscord("Bot encountered an error: 😞", err);
-	});
-
+	bot.on("error", (err) => sendToDiscord("Bot encountered an error: 😞", err));
 	bot.on("end", () => {
 		sendToDiscord("Disconnected from the server, attempting to reconnect... 🔄");
-		if (bot.viewer) {
-			bot.viewer.close();
-		}
+		if (bot.viewer) bot.viewer.close();
 		createBot();
 	});
 }
 
-function sendToMinecraft(message, discordUsername) {
+async function sendToMinecraft(message, discordUsername) {
 	if (message === "/antiafk") {
-		if (isAntiAfkActive) {
-			stopAntiAfkInterval();
-			sendToDiscord("Anti-AFK mode deactivated. 🛑");
-		} else {
-			startAntiAfkInterval();
-			sendToDiscord("Anti-AFK mode activated. 🚀");
-		}
+		isAntiAfkActive ? stopAntiAfkInterval() : startAntiAfkInterval();
+		sendToDiscord(isAntiAfkActive ? "Anti-AFK mode activated. 🚀" : "Anti-AFK mode deactivated. 🛑");
 	} else if (message === "/listtab") {
 		sendPlayerListToDiscord();
 	} else if (message === "/reconnect") {
 		bot.end();
 	} else if (message.startsWith("/Rclickslot")) {
 		const slotNumber = parseInt(message.split(" ")[1]);
-		if (!isNaN(slotNumber)) {
-			if (slotNumber > 8) {
-				sendToDiscord("There are only 9(0 to 8) slots in the hotbar! 🤔");
-			} else {
-				bot.setQuickBarSlot(slotNumber);
-				bot.activateItem();
-			}
+		if (!isNaN(slotNumber) && slotNumber <= 8) {
+			bot.setQuickBarSlot(slotNumber);
+			bot.activateItem();
+		} else {
+			sendToDiscord("There are only 9(0 to 8) slots in the hotbar! 🤔");
 		}
 	} else if (message.startsWith("/Lclickslot")) {
 		const slotNumber = parseInt(message.split(" ")[1]);
 		if (!isNaN(slotNumber)) {
-			bot.simpleClick.leftMouse(slotNumber, 0, 0);
+			if (slotNumber > 53) {
+				sendToDiscord("Slot number exceeds the maximum number of slots (53). 🤔");
+			} else {
+				bot.simpleClick.leftMouse(slotNumber, 0, 0);
+			}
 		}
 	} else if (message === "/closewindow") {
 		bot.closeWindow(bot.currentWindow);
@@ -257,14 +225,16 @@ function sendToMinecraft(message, discordUsername) {
 	} else if (message.startsWith("/yell ")) {
 		const yellMessage = message.slice(6);
 		bot.chat(`${discordUsername} 🗣️ ${yellMessage}`);
-	} else if (message === `/move`) {
+	} else if (message === "/move") {
 		sendToDiscord('Bot moving 🏃‍♂️');
 		bot.setControlState('forward', true);
-		setTimeout(() => {
-			bot.setControlState('forward', false);
-		}, 5000);
+		await sleep(5000);
+		bot.setControlState('forward', false);
+	} else if (message === "/hunger") {
+		const hunger = (bot.food / 2).toFixed(1);
+		sendToDiscord(`Bot hunger: ${hunger} 🍖`);
 	} else {
-		bot.chat(`${message}`);
+		bot.chat(message);
 	}
 }
 
@@ -291,42 +261,19 @@ function startAntiAfkInterval() {
 		}, 500);
 
 		bot.setControlState('back', true);
-
-		setTimeout(() => {
-			bot.setControlState('back', false);
-		}, 500);
-
+		setTimeout(() => bot.setControlState('back', false), 500);
 		bot.setControlState('right', true);
-
-		setTimeout(() => {
-			bot.setControlState('right', false);
-		}, 500);
-
+		setTimeout(() => bot.setControlState('right', false), 500);
 		bot.setControlState('left', true);
-
-		setTimeout(() => {
-			bot.setControlState('left', false);
-		}, 500);
-
+		setTimeout(() => bot.setControlState('left', false), 500);
 		bot.setControlState('jump', true);
-
-		setTimeout(() => {
-			bot.setControlState('jump', false);
-		}, 500);
-
+		setTimeout(() => bot.setControlState('jump', false), 500);
 		bot.setControlState('sprint', true);
-
-		setTimeout(() => {
-			bot.setControlState('sprint', false);
-		}, 500);
+		setTimeout(() => bot.setControlState('sprint', false), 500);
 
 		bot.look(Math.random() * 180 - 90, 0, true);
-
 		bot.setControlState('forward', true);
-
-		setTimeout(() => {
-			bot.setControlState('forward', false);
-		}, 500);
+		setTimeout(() => bot.setControlState('forward', false), 500);
 	}, 30 * 1000); // <-- antiafk initiate interval 30 seconds, customize it to your needed seconds by replacing 30 with your interval
 }
 
@@ -371,43 +318,34 @@ function sendToDiscord(message, embedData = null) {
 					embeds: [embedData]
 				});
 			} else if (message) {
-				message = "```fix\n " + message + "\n```";
-				channel.send(message);
+				channel.send(`\`\`\`fix\n${message}\n\`\`\``);
 			}
 		}
 	}
 }
 
-createBot();
-
-// ============== Discord code =============== //
-
-discordClient = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.DirectMessages,
-		GatewayIntentBits.MessageContent,
-	],
-});
-
-discordClient.login(config.discordToken);
-
-discordClient.on("ready", () => {
+async function main() {
+	await createBot();
+	discordClient = new Client({
+		intents: Object.values(GatewayIntentBits)
+	});
+	await discordClient.login(config.discordToken);
 	console.log("Discord bot connected");
 	discordClient.user.setActivity(`${config.serverHost}`, {
-		type: ActivityType.Playing,
+		type: ActivityType.Playing
 	});
-});
 
-discordClient.on("messageCreate", (message) => {
-	if (
-		message.channel.id === config.discordChannelId &&
-		config.allowedUserIds.includes(message.author.id)
-	) {
-		sendToMinecraft(message.content, message.author.username);
-		message.react("✅");
-	}
-});
+	discordClient.on("messageCreate", (message) => {
+		if (message.channel.id === config.discordChannelId && config.allowedUserIds.includes(message.author.id)) {
+			sendToMinecraft(message.content, message.author.username);
+			message.react("✅");
+		}
+	});
+}
 
+main();
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
 //                😌 ✨ eye bleach format
