@@ -33,6 +33,7 @@ git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
 Install the required dependencies:
 ```
 cd Mineflayer-Discord-bridge
+npm install readline
 npm install
 ```
 
@@ -60,6 +61,7 @@ pkg update && pkg upgrade
 pkg install nodejs git
 git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
 cd Mineflayer-Discord-bridge
+npm install readline
 npm install
 ```
   
