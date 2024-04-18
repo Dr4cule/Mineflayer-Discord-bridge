@@ -451,10 +451,12 @@ async function main() {
 	});
 
 	discordClient.on("messageCreate", (message) => {
+		if (discord){
 		if (message.channel.id === config.discordChannelId && config.allowedUserIds.includes(message.author.id)) {
 			sendToMinecraft(message.content, message.author.username);
 			message.react("✅");
 		}
+	  }
 	});
 }
 
@@ -531,6 +533,12 @@ rl.on('line', (input) => {
 			console.log(`Available commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /todis`);
 		} else {
 			bot.chat(input);
+		}
+	} else {
+		if (input === "/fpull"){
+			sendToDiscord("Controls and chats snatched by console, go to console. 🤖");
+			discord = false;
+			console.log("Console mode activated by force. 🤖");
 		}
 	}
 });
