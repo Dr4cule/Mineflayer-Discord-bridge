@@ -343,7 +343,7 @@ async function sendToMinecraft(message, discordUsername) {
 		sendToDiscord("Console mode activated. 🎉");
 		console.log("Console mode activated. 🎉");
 	} else if (message === "/cmdhelp") {
-		sendToDiscord(`/antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /tocmd`);
+		sendToDiscord(`Availabale commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /tocmd`);
 	} else {
 		bot.chat(message);
 	}
@@ -528,7 +528,7 @@ rl.on('line', (input) => {
 			console.log("Discord mode activated. 🎉");
 			sendToDiscord("Discord mode activated. 🎉");
 		} else if (message === "/cmdhelp") {
-			console.log(`/antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /todis`);
+			console.log(`Available commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /todis`);
 		} else {
 			bot.chat(input);
 		}
