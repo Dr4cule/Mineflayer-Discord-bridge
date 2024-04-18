@@ -339,9 +339,9 @@ async function sendToMinecraft(message, discordUsername) {
 		const hunger = (bot.food / 2).toFixed(1);
 		sendToDiscord(`Bot hunger: ${hunger} 🍖`);
 	} else if (message === "/tocmd") {
-		sendToDiscord("Console mode activated. 🎉");
-		console.log("Console mode activated. 🎉");
+		sendToDiscord("Console mode activated, go to console. 🎉");
 		discord = false;
+		console.log("Console mode activated. 🎉");
 	} else if (message === "/cmdhelp") {
 		sendToDiscord(`Availabale commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /tocmd`);
 	} else {
@@ -524,9 +524,9 @@ rl.on('line', (input) => {
 			const hunger = (bot.food / 2).toFixed(1);
 			console.log(`Bot hunger: ${hunger} 🍖`);
 		} else if (input === "/todis") {
-			console.log("Discord mode activated. 🎉");
-			sendToDiscord("Discord mode activated. 🎉");
+			console.log("Discord mode activated, go to discord. 🎉");
 			discord = true;
+			sendToDiscord("Discord mode activated. 🎉");
 		} else if (input === "/cmdhelp") {
 			console.log(`Available commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /todis`);
 		} else {
