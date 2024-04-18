@@ -13,6 +13,7 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 - Blocks certain messages from being sent to the Minecraft server 🛑
 - Automatically reconnects to the Minecraft server if the bot disconnects 🔄
 - Has prismarine-viewer to look at what your bot is up to, right click on the map to move bot to that point 😮
+- Can be controlled from both console and discord. 💯
 
 ![MineflayerDiscordBot](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ef396ac-2d7e-4945-a4ef-dc7341a46240)
 ![Prismarine Viewer](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/fe25df04-a17d-44e6-a900-095efe67cbf4)
@@ -108,6 +109,8 @@ Configure ```config.json``` file with your requirements: 🔧
 - ```discordChannelId```: The ID of the Discord channel where the bot will send messages.
 - ```allowedUserIds```: The list of Discord user IDs that are allowed to send commands to the bot.
 - ```BlockedMessages```: The list of messages that the bot will ignore.
+- ```Preference```: If true the bot sends messages to dc and can be controlled by allowed users
+                     from there else it sends and can be controlled from console.
 
 Once everything is done and set up run the bot using:
 ```
@@ -130,6 +133,8 @@ node index.js
 - ```/coords```: Gives the coordinates of the bot. 🌐
 - ```/move```: To make the bot move forwards for 5 seconds. 🏃‍♂️
 - ```/hunger```: Gives the bots hunger index number. 🍖
+- ```/tocmd```: Transfers control and chats to console, only available in discord. 👇
+- ```/todis```: Gives control and streams chat to discord, only available in console. ☝️
 - ```/yell ```: Sends message with the username of discord message sender. (botname » dcmsgsender 🗣️ msg)
  example: ```/yell Hello world``` -output-> ```PizzAllDay7 » Dr4cule 🗣️ Hello world```
  
