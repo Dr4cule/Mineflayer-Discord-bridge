@@ -229,7 +229,9 @@ async function sendToMinecraft(message, discordUsername) {
 		} = bot.entity.position;
 		sendToDiscord(`Bot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`);
 	} else if (message === "/inv") {
-		const inventory = bot.inventory.items().map((item, index) => `${item.name} (Slot ${index})`).join(', ');
+		const inventory = bot.inventory.items().filter(item => item !== null).map((item, index) => {
+		  return `${item.name} x${item.count} (Slot ${index})`;
+		}).join(', ');
 		sendToDiscord(`Bot inventory 👀 : ${inventory}`);
 	} else if (message.startsWith("/yell ")) {
 		const yellMessage = message.slice(6);
