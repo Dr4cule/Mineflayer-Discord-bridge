@@ -30,7 +30,7 @@ Clone the repository:
 ```
 git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
 ```
-Install the required dependencies:
+Install the required dependencies(will take a while to download):
 ```
 cd Mineflayer-Discord-bridge
 npm install
@@ -53,7 +53,7 @@ To get the discord channel id and discord user ids:
 
 ## -- Installation for Termux -- 🤖
 - Install Termux from the Play Store or F-Droid.
-- Open Termux and run the following commands:
+- Open Termux and run the following commands(will take a while to download):
 
 ```
 pkg update && pkg upgrade
