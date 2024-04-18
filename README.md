@@ -40,7 +40,7 @@ npm install
   ```
   npm ci
    // or use 👇 if you want the latest dependencies versions, may cause errors, try when about two dosent work for you
-  npm install @ngrok/ngrok discord.js mineflayer@latest mineflayer-pathfinder prismarine-viewer minecraft-data
+  npm install @ngrok/ngrok discord.js mineflayer@latest mineflayer-pathfinder prismarine-viewer minecraft-data minecraft-data mineflayer-auto-eat mineflayer-armor-manager
   ```
 - Note: If you are facing issues with installing, try installing one package at a time and ```npm audit fix --force```
   
@@ -55,11 +55,11 @@ To get the discord channel id and discord user ids:
 - Open Termux and run the following commands:
 
 ```
-  pkg update && pkg upgrade
-  pkg install nodejs git
-  git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
-  cd Mineflayer-Discord-bridge
-  npm install
+pkg update && pkg upgrade
+pkg install nodejs git
+git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
+cd Mineflayer-Discord-bridge
+npm install
 ```
   
  - Use the one below if you want dependencies same as mine installed 
@@ -67,7 +67,7 @@ To get the discord channel id and discord user ids:
   ```
   npm ci
    // or use 👇 if you want the latest dependencies versions, may cause errors, try when about two dosent work for you
-  npm install @ngrok/ngrok discord.js mineflayer@latest mineflayer-pathfinder prismarine-viewer minecraft-data
+  npm install @ngrok/ngrok discord.js mineflayer@latest mineflayer-pathfinder prismarine-viewer minecraft-data mineflayer-auto-eat mineflayer-armor-manager
   ```
   - Note: If you are facing issues with installing, try installing one package at a time and ```npm audit fix --force```
     
