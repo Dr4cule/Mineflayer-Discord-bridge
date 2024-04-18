@@ -50,6 +50,8 @@ const {
 const {
 	GoalBlock
 } = require('mineflayer-pathfinder').goals
+const autoeat = require('mineflayer-auto-eat').plugin
+const armorManager = require("mineflayer-armor-manager");
 
 let bot;
 let discordClient;
@@ -70,12 +72,15 @@ async function createBot() {
 	});
 
 	bot.loadPlugin(pathfinder);
+	bot.loadPlugin(autoeat);
+	bot.loadPlugin(armorManager);
 
 	bot.once("spawn", () => {
 		sendToDiscord("Bot spawned 🙌");
 		mineflayerViewer(bot, {
 			port: 3000
 		});
+		bot.armorManager.equipAll();
 		const mcData = require('minecraft-data')(bot.version)
 		const defaultMove = new Movements(bot, mcData)
 		bot.on('path_update', (r) => {
@@ -114,6 +119,10 @@ async function createBot() {
 
 	bot.on("windowOpen", () => sendToDiscord(`Window opened 🔓`));
 	bot.on("windowClose", () => sendToDiscord(`Window closed 🔐`));
+
+	// bot.on('autoeat_finished', (item, offhand) => {
+	// 	sendToDiscord(`😋 Ate ${item.name} from ${offhand ? 'offhand' : 'hand'}`)
+	// })
 
 	bot.on("login", () => {
 		sendToDiscord("Bot logged in 🙌");
