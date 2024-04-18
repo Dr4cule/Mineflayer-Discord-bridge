@@ -527,7 +527,7 @@ rl.on('line', (input) => {
 			discord = true;
 			console.log("Discord mode activated. 🎉");
 			sendToDiscord("Discord mode activated. 🎉");
-		} else if (message === "/cmdhelp") {
+		} else if (input === "/cmdhelp") {
 			console.log(`Available commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /todis`);
 		} else {
 			bot.chat(input);
