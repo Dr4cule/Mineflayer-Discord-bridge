@@ -63,11 +63,11 @@ async function startNgrok() {
 		});
 		console.log(`Ingress established at: ${listener.url()}`);
 		setInterval(() => {
-            if (discord){
-                sendToDiscord(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
-            } else {
-                console.log(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
-            }
+			if (discord) {
+				sendToDiscord(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
+			} else {
+				console.log(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
+			}
 		}, 30 * 1000);
 	} catch (error) {
 		console.error('Error starting ngrok:', error);
@@ -119,11 +119,11 @@ async function createBot() {
 	bot.loadPlugin(armorManager);
 
 	bot.once("spawn", () => {
-        if (discord){
-            sendToDiscord(`Bot spawned 🙌`);
-        } else {
-            console.log("Bot spawned 🙌");
-        }
+		if (discord) {
+			sendToDiscord(`Bot spawned 🙌`);
+		} else {
+			console.log("Bot spawned 🙌");
+		}
 		mineflayerViewer(bot, {
 			port: 3000
 		});
@@ -165,40 +165,42 @@ async function createBot() {
 	});
 
 	bot.on("windowOpen", () => {
-    if (discord){
-        sendToDiscord(`Window opened 🔓`);
-    } else {
-        console.log(`Window opened 🔓`);
-    }});
+		if (discord) {
+			sendToDiscord(`Window opened 🔓`);
+		} else {
+			console.log(`Window opened 🔓`);
+		}
+	});
 
 	bot.on("windowClose", () => {
-        if (discord){
-            sendToDiscord(`Window closed 🔐`);
-        } else {
-            console.log(`Window closed 🔐`);
-        }});
+		if (discord) {
+			sendToDiscord(`Window closed 🔐`);
+		} else {
+			console.log(`Window closed 🔐`);
+		}
+	});
 
 	// bot.on('autoeat_finished', (item, offhand) => {
 	// 	sendToDiscord(`😋 Ate ${item.name} from ${offhand ? 'offhand' : 'hand'}`)
 	// })
 
 	bot.on("login", () => {
-        if (discord){
-            sendToDiscord(`Bot logged in 🙌`);
-        } else {
-            console.log(`Bot logged in 🙌`);
-        }
+		if (discord) {
+			sendToDiscord(`Bot logged in 🙌`);
+		} else {
+			console.log(`Bot logged in 🙌`);
+		}
 		bot.chat(`/register ${config.botPswd} ${config.botPswd}`);
 		setTimeout(() => bot.chat(`/login ${config.botPswd}`), 3000);
-        if (discord){
-            setInterval(() => sendPlayerListToDiscord(), 5 * 60 * 1000); // <-- customize it to your need, sends this every 5 minutes
-        } else {
-            setInterval(() => {
-                const playerList = Object.keys(bot.players).join(', ');
-                const totalPlayers = Object.keys(bot.players).length;
-                console.log(`Players in tab list (${totalPlayers}): ${playerList}`); 
-            }, 5 * 60 * 1000);
-        }
+		if (discord) {
+			setInterval(() => sendPlayerListToDiscord(), 5 * 60 * 1000); // <-- customize it to your need, sends this every 5 minutes
+		} else {
+			setInterval(() => {
+				const playerList = Object.keys(bot.players).join(', ');
+				const totalPlayers = Object.keys(bot.players).length;
+				console.log(`Players in tab list (${totalPlayers}): ${playerList}`);
+			}, 5 * 60 * 1000);
+		}
 		setTimeout(() => {
 			bot.setControlState("forward", true);
 			setTimeout(() => bot.setControlState("forward", false), 5000);
@@ -222,20 +224,20 @@ async function createBot() {
 	});
 
 	bot.on("death", async () => {
-        if (discord){
-            sendToDiscord("The bot has died. 💀 Respawning...");
-        } else {
-            console.log("The bot has died. 💀 Respawning...");
-        }
+		if (discord) {
+			sendToDiscord("The bot has died. 💀 Respawning...");
+		} else {
+			console.log("The bot has died. 💀 Respawning...");
+		}
 		if (!bot.spawn) {
 			await sleep(5000); // Wait 5 seconds before respawning
 			bot.respawn();
 		} else {
-            if (discord){
-                sendToDiscord("Bot 🤖 is already respawned, skipping respawn attempt.");
-            } else {
-                console.log("Bot 🤖 is already respawned, skipping respawn attempt.");
-            }
+			if (discord) {
+				sendToDiscord("Bot 🤖 is already respawned, skipping respawn attempt.");
+			} else {
+				console.log("Bot 🤖 is already respawned, skipping respawn attempt.");
+			}
 		}
 	});
 
@@ -254,95 +256,95 @@ async function createBot() {
 			if (config.BlockedMessages.some(blockedMessage => usernameStr.includes(blockedMessage)) || usernameStr.length === 0) return;
 
 			const playerName = sender ? (players[sender] || "Unknown") : "[Server]";
-            if (discord){
-                sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
-            } else {
-                console.log(`💬 ${playerName} » ${usernameStr}`);
-            }
+			if (discord) {
+				sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
+			} else {
+				console.log(`💬 ${playerName} » ${usernameStr}`);
+			}
 		} else {
 			console.log("Received a non-string message:", message);
 		}
 	});
 
 	bot.on("error", (err) => {
-        if (discord){
-            sendToDiscord("Bot encountered an error: 😞", err);
-        } else {
-            console.log("Bot encountered an error: 😞", err);
-        }});
+		if (discord) {
+			sendToDiscord("Bot encountered an error: 😞", err);
+		} else {
+			console.log("Bot encountered an error: 😞", err);
+		}
+	});
 	bot.on("end", () => {
-        if (discord){
-            sendToDiscord("Bot disconnected from the server, attempting to reconnect... 🔄");
-        } else {
-            console.log("Bot disconnected from the server, attempting to reconnect... 🔄");
-        }
+		if (discord) {
+			sendToDiscord("Bot disconnected from the server, attempting to reconnect... 🔄");
+		} else {
+			console.log("Bot disconnected from the server, attempting to reconnect... 🔄");
+		}
 		if (bot.viewer) bot.viewer.close();
 		createBot();
 	});
 }
 
 async function sendToMinecraft(message, discordUsername) {
-        if (message === "/antiafk") {
-            isAntiAfkActive ? stopAntiAfkInterval() : startAntiAfkInterval();
-            sendToDiscord(isAntiAfkActive ? "Anti-AFK mode activated. 🚀" : "Anti-AFK mode deactivated. 🛑");
-        } else if (message === "/listtab") {
-            sendPlayerListToDiscord();
-        } else if (message === "/reconnect") {
-            bot.end();
-        } else if (message.startsWith("/Rclickslot")) {
-            const slotNumber = parseInt(message.split(" ")[1]);
-            if (!isNaN(slotNumber) && slotNumber <= 8) {
-                bot.setQuickBarSlot(slotNumber);
-                bot.activateItem();
-            } else {
-                sendToDiscord("There are only 9(0 to 8) slots in the hotbar! 🤔");
-            }
-        } else if (message.startsWith("/Lclickslot")) {
-            const slotNumber = parseInt(message.split(" ")[1]);
-            if (!isNaN(slotNumber)) {
-                if (slotNumber > 53) {
-                    sendToDiscord("Slot number exceeds the maximum number of slots (53). 🤔");
-                } else {
-                    bot.simpleClick.leftMouse(slotNumber, 0, 0);
-                }
-            }
-        } else if (message === "/closewindow") {
-            bot.closeWindow(bot.currentWindow);
-        } else if (message === "/health") {
-            const health = bot.health;
-            const healthValue = (health / 2).toFixed(1);
-            sendToDiscord(`Bot health: ${healthValue} ❤️`);
-        } else if (message === "/coords") {
-            const {
-                x,
-                y,
-                z
-            } = bot.entity.position;
-            sendToDiscord(`Bot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`);
-        } else if (message === "/inv") {
-            const inventory = bot.inventory.items().filter(item => item !== null).map((item, index) => {
-              return `${item.name} x${item.count} (Slot ${index})`;
-            }).join(', ');
-            sendToDiscord(`Bot inventory 👀 : ${inventory}`);
-        } else if (message.startsWith("/yell ")) {
-            const yellMessage = message.slice(6);
-            bot.chat(`${discordUsername} 🗣️ ${yellMessage}`);
-        } else if (message === "/move") {
-            sendToDiscord('Bot moving 🏃‍♂️');
-            bot.setControlState('forward', true);
-            await sleep(5000);
-            bot.setControlState('forward', false);
-        } else if (message === "/hunger") {
-            const hunger = (bot.food / 2).toFixed(1);
-            sendToDiscord(`Bot hunger: ${hunger} 🍖`);
-        } else if (message === "/tocmd"){
-            discord = false;
-            sendToDiscord("Console mode activated. 🎉");
-            console.log("Console mode activated. 🎉");
-        }
-         else {
-            bot.chat(message);
-        }
+	if (message === "/antiafk") {
+		isAntiAfkActive ? stopAntiAfkInterval() : startAntiAfkInterval();
+		sendToDiscord(isAntiAfkActive ? "Anti-AFK mode activated. 🚀" : "Anti-AFK mode deactivated. 🛑");
+	} else if (message === "/listtab") {
+		sendPlayerListToDiscord();
+	} else if (message === "/reconnect") {
+		bot.end();
+	} else if (message.startsWith("/Rclickslot")) {
+		const slotNumber = parseInt(message.split(" ")[1]);
+		if (!isNaN(slotNumber) && slotNumber <= 8) {
+			bot.setQuickBarSlot(slotNumber);
+			bot.activateItem();
+		} else {
+			sendToDiscord("There are only 9(0 to 8) slots in the hotbar! 🤔");
+		}
+	} else if (message.startsWith("/Lclickslot")) {
+		const slotNumber = parseInt(message.split(" ")[1]);
+		if (!isNaN(slotNumber)) {
+			if (slotNumber > 53) {
+				sendToDiscord("Slot number exceeds the maximum number of slots (53). 🤔");
+			} else {
+				bot.simpleClick.leftMouse(slotNumber, 0, 0);
+			}
+		}
+	} else if (message === "/closewindow") {
+		bot.closeWindow(bot.currentWindow);
+	} else if (message === "/health") {
+		const health = bot.health;
+		const healthValue = (health / 2).toFixed(1);
+		sendToDiscord(`Bot health: ${healthValue} ❤️`);
+	} else if (message === "/coords") {
+		const {
+			x,
+			y,
+			z
+		} = bot.entity.position;
+		sendToDiscord(`Bot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`);
+	} else if (message === "/inv") {
+		const inventory = bot.inventory.items().filter(item => item !== null).map((item, index) => {
+			return `${item.name} x${item.count} (Slot ${index})`;
+		}).join(', ');
+		sendToDiscord(`Bot inventory 👀 : ${inventory}`);
+	} else if (message.startsWith("/yell ")) {
+		const yellMessage = message.slice(6);
+		bot.chat(`${discordUsername} 🗣️ ${yellMessage}`);
+	} else if (message === "/move") {
+		sendToDiscord('Bot moving 🏃‍♂️');
+		bot.setControlState('forward', true);
+		await sleep(5000);
+		bot.setControlState('forward', false);
+	} else if (message === "/hunger") {
+		const hunger = (bot.food / 2).toFixed(1);
+		sendToDiscord(`Bot hunger: ${hunger} 🍖`);
+	} else if (message === "/tocmd") {
+		discord = false;
+		sendToDiscord("Console mode activated. 🎉");
+		console.log("Console mode activated. 🎉");
+	} else {
+		bot.chat(message);
+	}
 }
 
 function startAntiAfkInterval() {
@@ -417,22 +419,22 @@ function stopAntiAfkInterval() {
 }
 
 function sendToDiscord(message, embedData = null) {
-    if (discord) {
-	if (discordClient) {
-		const channel = discordClient.channels.cache.get(config.discordChannelId);
-		if (channel && channel.send) {
-			if (embedData) {
-				channel.send({
-					embeds: [embedData]
-				});
-			} else if (message) {
-				channel.send(`\`\`\`fix\n${message}\n\`\`\``);
+	if (discord) {
+		if (discordClient) {
+			const channel = discordClient.channels.cache.get(config.discordChannelId);
+			if (channel && channel.send) {
+				if (embedData) {
+					channel.send({
+						embeds: [embedData]
+					});
+				} else if (message) {
+					channel.send(`\`\`\`fix\n${message}\n\`\`\``);
+				}
 			}
+		} else {
+			console.log(message);
 		}
-    } else {
-        console.log(message);
-        }
-    }
+	}
 }
 
 async function main() {
@@ -457,76 +459,76 @@ async function main() {
 main();
 
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+	input: process.stdin,
+	output: process.stdout
 });
 
 rl.on('line', (input) => {
-    if (!discord){
-        if (input === "/antiafk") {
-            isAntiAfkActive ? stopAntiAfkInterval() : startAntiAfkInterval();
-            console.log(isAntiAfkActive ? "Anti-AFK mode activated. 🚀" : "Anti-AFK mode deactivated. 🛑");
-        } else if (input === "/listtab") {
-            const playerList = Object.keys(bot.players).join(', ');
-            const totalPlayers = Object.keys(bot.players).length;
-            console.log(`Players in tab list (${totalPlayers}): ${playerList}`);
-        } else if (input === "/reconnect") {
-            bot.end();
-        } else if (input.startsWith("/Rclickslot")) {
-            const slotNumber = parseInt(input.split(" ")[1]);
-            if (!isNaN(slotNumber) && slotNumber <= 8) {
-                bot.setQuickBarSlot(slotNumber);
-                bot.activateItem();
-            } else {
-                console.log("There are only 9(0 to 8) slots in the hotbar! 🤔");
-            }
-        } else if (input.startsWith("/Lclickslot")) {
-            const slotNumber = parseInt(input.split(" ")[1]);
-            if (!isNaN(slotNumber)) {
-                if (slotNumber > 53) {
-                    console.log("Slot number exceeds the maximum number of slots (53). 🤔");
-                } else {
-                    bot.simpleClick.leftMouse(slotNumber, 0, 0);
-                }
-            }
-        } else if (input === "/closewindow") {
-            bot.closeWindow(bot.currentWindow);
-        } else if (input === "/health") {
-            const health = bot.health;
-            const healthValue = (health / 2).toFixed(1);
-            console.log(`Bot health: ${healthValue} ❤️`);
-        } else if (input === "/coords") {
-            const {
-                x,
-                y,
-                z
-            } = bot.entity.position;
-            console.log(`Bot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`);
-        } else if (input === "/inv") {
-            const inventory = bot.inventory.items().filter(item => item !== null).map((item, index) => {
-              return `${item.name} x${item.count} (Slot ${index})`;
-            }).join(', ');
-            console.log(`Bot inventory 👀 : ${inventory}`);
-        } else if (input.startsWith("/yell ")) {
-            const yellMessage = input.slice(6);
-            bot.chat(`🗣️ ${yellMessage}`);
-        } else if (input === "/move") {
-            console.log('Bot moving 🏃‍♂️');
-            bot.setControlState('forward', true);
-            setTimeout(() => {
-                bot.setControlState('forward', false);
-            }, 5000)
-        } else if (input === "/hunger") {
-            const hunger = (bot.food / 2).toFixed(1);
-            console.log(`Bot hunger: ${hunger} 🍖`);
-        } else if (input === "/todis"){
-            discord = true;
-            console.log("Discord mode activated. 🎉");
-            sendToDiscord("Discord mode activated. 🎉");
-        } else {
-            bot.chat(input);
-        }
-    }
+	if (!discord) {
+		if (input === "/antiafk") {
+			isAntiAfkActive ? stopAntiAfkInterval() : startAntiAfkInterval();
+			console.log(isAntiAfkActive ? "Anti-AFK mode activated. 🚀" : "Anti-AFK mode deactivated. 🛑");
+		} else if (input === "/listtab") {
+			const playerList = Object.keys(bot.players).join(', ');
+			const totalPlayers = Object.keys(bot.players).length;
+			console.log(`Players in tab list (${totalPlayers}): ${playerList}`);
+		} else if (input === "/reconnect") {
+			bot.end();
+		} else if (input.startsWith("/Rclickslot")) {
+			const slotNumber = parseInt(input.split(" ")[1]);
+			if (!isNaN(slotNumber) && slotNumber <= 8) {
+				bot.setQuickBarSlot(slotNumber);
+				bot.activateItem();
+			} else {
+				console.log("There are only 9(0 to 8) slots in the hotbar! 🤔");
+			}
+		} else if (input.startsWith("/Lclickslot")) {
+			const slotNumber = parseInt(input.split(" ")[1]);
+			if (!isNaN(slotNumber)) {
+				if (slotNumber > 53) {
+					console.log("Slot number exceeds the maximum number of slots (53). 🤔");
+				} else {
+					bot.simpleClick.leftMouse(slotNumber, 0, 0);
+				}
+			}
+		} else if (input === "/closewindow") {
+			bot.closeWindow(bot.currentWindow);
+		} else if (input === "/health") {
+			const health = bot.health;
+			const healthValue = (health / 2).toFixed(1);
+			console.log(`Bot health: ${healthValue} ❤️`);
+		} else if (input === "/coords") {
+			const {
+				x,
+				y,
+				z
+			} = bot.entity.position;
+			console.log(`Bot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`);
+		} else if (input === "/inv") {
+			const inventory = bot.inventory.items().filter(item => item !== null).map((item, index) => {
+				return `${item.name} x${item.count} (Slot ${index})`;
+			}).join(', ');
+			console.log(`Bot inventory 👀 : ${inventory}`);
+		} else if (input.startsWith("/yell ")) {
+			const yellMessage = input.slice(6);
+			bot.chat(`🗣️  ${yellMessage}`);
+		} else if (input === "/move") {
+			console.log('Bot moving 🏃‍♂️');
+			bot.setControlState('forward', true);
+			setTimeout(() => {
+				bot.setControlState('forward', false);
+			}, 5000)
+		} else if (input === "/hunger") {
+			const hunger = (bot.food / 2).toFixed(1);
+			console.log(`Bot hunger: ${hunger} 🍖`);
+		} else if (input === "/todis") {
+			discord = true;
+			console.log("Discord mode activated. 🎉");
+			sendToDiscord("Discord mode activated. 🎉");
+		} else {
+			bot.chat(input);
+		}
+	}
 });
 
 function sleep(ms) {
