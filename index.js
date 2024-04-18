@@ -535,6 +535,14 @@ rl.on('line', (input) => {
 	}
 });
 
+rl.on('SIGINT', () => {
+	rl.question(`Are you sure you want to exit ${config.botUsername}? yes or no `, (answer) => {
+	  if (answer.match(/^y(es)?$/i)){
+		process.exit()
+	}
+    });
+});
+
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
