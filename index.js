@@ -309,7 +309,7 @@ async function sendToMinecraft(message, discordUsername) {
 				bot.simpleClick.leftMouse(slotNumber, 0, 0);
 			}
 		}
-	} else if (input === "/closewindow") {
+	} else if (message === "/closewindow") {
 		if (bot.currentWindow) {
 			bot.closeWindow(bot.currentWindow);
 		} else {
