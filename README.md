@@ -149,6 +149,7 @@ node index.js
 - ```/follow```: Follows specified player, will be added later.
 - Telegram support
 - Online bot Dashboard
+- Will add lots of stuff when I start getting good at coding.
   
 ![slotinfo](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ee78540-c7cb-42b4-9923-422119b13f97)
 
