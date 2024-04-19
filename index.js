@@ -112,6 +112,7 @@ async function createBot() {
 		password: config.botPass,
 		autoReconnect: true,
 		reconnectTimer: 5 * 1000,
+		viewDistance: "normal"
 	});
 
 	bot.loadPlugin(pathfinder);
