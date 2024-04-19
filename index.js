@@ -273,6 +273,15 @@ async function createBot() {
 			console.log("Bot encountered an error: 😞", err);
 		}
 	});
+
+	bot.on('kicked', (reason, loggedIn) => {
+		if (discord){
+			sendToDiscord(`Bot was kicked from the server: 😞", ${reason}, Logged in: ${loggedIn}`);
+		} else {
+			console.log(`Bot was kicked from the server: 😞", ${reason}, Logged in: ${loggedIn}`);
+		}
+	});
+	
 	bot.on("end", () => {
 		if (discord) {
 			sendToDiscord("Bot disconnected from the server, attempting to reconnect... 🔄");
