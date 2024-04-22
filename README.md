@@ -83,6 +83,8 @@ To get the discord channel id and discord user ids:
 ## -- Ngrok -- 🌐
 - To get your ngrok token visit [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken), click on the link after you log in if you are lost. 🔑
 - Paste your ngrok token to the specified place in ```config.json``` 📝
+- Note: You can visit localhost:3000 to use prismarine viewer locally once your free ngrok expires or just make another alt for ngrok with temp mails for 
+      the bots view to be accessable for other authorized users in discord server.
 
 Making a discord bot: 🤖
 
