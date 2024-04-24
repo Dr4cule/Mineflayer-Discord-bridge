@@ -20,7 +20,7 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 
 ![MineflayerDiscordBot](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ef396ac-2d7e-4945-a4ef-dc7341a46240)
 ![Prismarine Viewer](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/fe25df04-a17d-44e6-a900-095efe67cbf4)
-
+http://localhost:3000/
 
 ## -- Requirements -- 📋
 - Node.js (version 19 or higher) 🚀
