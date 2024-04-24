@@ -60,7 +60,7 @@ To get the discord channel id and discord user ids:
 
 ```
 pkg update && pkg upgrade
-pkg install nodejs git
+pkg install nodejs=20.11.1 git
 git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
 cd Mineflayer-Discord-bridge
 npm install
