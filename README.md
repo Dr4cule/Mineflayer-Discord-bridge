@@ -15,6 +15,8 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 - Has prismarine-viewer to look at what your bot is up to, right click on the map to move bot to that point 😮
 - Can be controlled from both console and discord. 💯
 - Note: May not work for some servers, needs stable internet connection. ⚠️
+- If preference in config files is set to "false" then the bot dosent need discord token, ngrok token, channel id and userids to run the code,
+- it can be run without them in your local command prompt.
 
 ![MineflayerDiscordBot](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ef396ac-2d7e-4945-a4ef-dc7341a46240)
 ![Prismarine Viewer](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/fe25df04-a17d-44e6-a900-095efe67cbf4)
