@@ -35,46 +35,12 @@ $$$$$$$  |$$ |            $$ |\\$$$$$$$\\ \\$$$$$$  |$$ |\\$$$$$$$\
         Welcome to Minecraft-Mineflayer-Discord-bridge 🤖🌍
 `)
 
-// =========== Ngrok webserver code =========== //
-
 const http = require('http');
 const ngrok = require('@ngrok/ngrok');
 const fs = require('fs');
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const ngrokAuthToken = config.ngrokAuthToken;
 const readline = require('readline');
-
-// Create webserver on port 4000
-const server = http.createServer((req, res) => {
-	res.writeHead(200, {
-		'Content-Type': 'text/html'
-	});
-	res.end('Congrats you have created an ngrok web server');
-});
-
-server.listen(4000, () => console.log('Node.js web server at 4000 is running...'));
-
-// Get your endpoint online
-async function startNgrok() {
-	try {
-		await ngrok.authtoken(ngrokAuthToken);
-		const listener = await ngrok.connect({
-			addr: 3000
-		});
-		console.log(`Ingress established at: ${listener.url()}`);
-		setInterval(() => {
-			if (discord) {
-				sendToDiscord(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
-			} else {
-				console.log(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
-			}
-		}, 30 * 1000);
-	} catch (error) {
-		console.error('Error starting ngrok:', error);
-	}
-}
-
-startNgrok();
 
 // ============ Mineflayer bot code ============== //
 
@@ -128,6 +94,7 @@ async function createBot() {
 		mineflayerViewer(bot, {
 			port: 3000
 		});
+		console.log("Bot viewer started on http://localhost:3000/ 🌐");
 		bot.armorManager.equipAll();
 		const mcData = require('minecraft-data')(bot.version)
 		const defaultMove = new Movements(bot, mcData)
@@ -453,8 +420,45 @@ function sendToDiscord(message, embedData = null) {
 	}
 }
 
+// =========== Ngrok webserver code =========== //
+
+if (discord){
+	// Create webserver on port 4000
+	const server = http.createServer((req, res) => {
+		res.writeHead(200, {
+			'Content-Type': 'text/html'
+		});
+		res.end('Congrats you have created an ngrok web server');
+	});
+	
+	server.listen(4000, () => console.log('Node.js web server at 4000 is running...'));
+	
+	// Get your endpoint online
+	async function startNgrok() {
+		try {
+			await ngrok.authtoken(ngrokAuthToken);
+			const listener = await ngrok.connect({
+				addr: 3000
+			});
+			console.log(`Ingress established at: ${listener.url()}`);
+			setInterval(() => {
+				if (discord) {
+					sendToDiscord(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
+				} else {
+					console.log(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
+				}
+			}, 30 * 1000);
+		} catch (error) {
+			console.error('Error starting ngrok:', error);
+		}
+	}
+	
+	startNgrok();
+	}
+
 async function main() {
 	await createBot();
+	if (discord){
 	discordClient = new Client({
 		intents: Object.values(GatewayIntentBits)
 	});
@@ -472,6 +476,7 @@ async function main() {
 		}
 	  }
 	});
+  }
 }
 
 main();
@@ -546,6 +551,31 @@ rl.on('line', (input) => {
 		} else if (input === "/todis") {
 			console.log("Discord mode activated, go to discord. 🎉");
 			discord = true;
+			if (discord){
+			discordClient = new Client({
+				intents: Object.values(GatewayIntentBits)
+			});
+			discordClient.login(config.discordToken);
+			setTimeout(() => {
+				
+			}, 3000);
+			if (discordClient){
+			console.log("Discord bot connected");
+		
+			discordClient.on("messageCreate", (message) => {
+				if (discord){
+				if (message.channel.id === config.discordChannelId && config.allowedUserIds.includes(message.author.id)) {
+					sendToMinecraft(message.content, message.author.username);
+					message.react("✅");
+				}
+			  }
+			});
+
+			// discordClient.user.setActivity(`${config.serverHost}`, {
+			// 	type: ActivityType.Playing
+			// });
+		}
+		}	
 			sendToDiscord("Discord mode activated. 🎉");
 		} else if (input === "/cmdhelp") {
 			console.log(`Available commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /todis`);
