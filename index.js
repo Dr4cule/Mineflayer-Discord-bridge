@@ -322,6 +322,10 @@ async function sendToMinecraft(message, discordUsername) {
 	} else if (message === "/tocmd") {
 		sendToDiscord("Console mode activated, go to console. 🎉");
 		discord = false;
+		if (discordClient) {
+			discordClient.destroy();
+			console.log("\x1b[1m \x1b[35m Discord client closed. 🤖\x1b[0m");
+		}
 		console.log("Console mode activated. 🎉");
 	} else if (message === "/cmdhelp") {
 		sendToDiscord(`Availabale commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /tocmd`);
@@ -586,6 +590,10 @@ rl.on('line', (input) => {
 		if (input === "/fpull"){
 			sendToDiscord("Controls and chats snatched by console, go to console. 🤖");
 			discord = false;
+			if (discordClient) {
+			discordClient.destroy();
+			console.log("\x1b[1m \x1b[35m Discord client closed. 🤖\x1b[0m");
+			}
 			console.log("\x1b[1m \x1b[35m Console mode activated by force. 🤖\x1b[0m");
 		}
 	}
