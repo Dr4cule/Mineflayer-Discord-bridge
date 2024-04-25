@@ -227,7 +227,7 @@ async function createBot() {
 			if (discord) {
 				sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
 			} else {
-				console.log(`💬 ${playerName} » ${usernameStr.toAnsi()}`);
+				console.log(`💬 \x1b[1m\x1b[97m${playerName}\x1b[0m » ${usernameStr.toAnsi()}`);
 			}
 		} else {
 			console.log("Received a non-string message:", message);
