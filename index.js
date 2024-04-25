@@ -326,7 +326,7 @@ async function sendToMinecraft(message, discordUsername) {
 			discordClient.destroy();
 			console.log("\x1b[1m \x1b[35m Discord client closed. 🤖\x1b[0m");
 		}
-		console.log("Console mode activated. 🎉");
+		console.log("\x1b[1m \x1b[35m Console mode activated. 🎉\x1b[0m");
 	} else if (message === "/cmdhelp") {
 		sendToDiscord(`Availabale commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /tocmd`);
 	} else {
