@@ -578,7 +578,7 @@ rl.on('line', (input) => {
 		}	
 			sendToDiscord("Discord mode activated. 🎉");
 		} else if (input === "/cmdhelp") {
-			console.log(`Available commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /todis`);
+			console.log(`\x1b[1m \x1b[35m Available commands: /antiafk, /listtab, /reconnect, /Rclickslot, /Lclickslot, /closewindow, /health, /coords, /inv, /yell, /move, /hunger, /todis\x1b[0m`);
 		} else {
 			bot.chat(input);
 		}
