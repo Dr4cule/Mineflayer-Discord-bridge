@@ -223,7 +223,7 @@ async function createBot() {
 			const usernameStr = username;
 			if (config.BlockedMessages.some(blockedMessage => String(usernameStr).includes(blockedMessage)) || usernameStr.length === 0) return;
 
-			const playerName = sender ? (players[sender] || "") : "\x1b[1m \x1b[35m [Server]\x1b[0m";
+			const playerName = sender ? (players[sender] || "") : (discord ? "[Server]" : "\x1b[1m \x1b[35m [Server]\x1b[0m");
 			if (discord) {
 				sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
 			} else {
