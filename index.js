@@ -94,7 +94,7 @@ async function createBot() {
 		mineflayerViewer(bot, {
 			port: 3000
 		});
-		console.log("Bot viewer started on http://localhost:3000/ 🌐");
+		console.log("\x1b[1m \x1b[35m Bot viewer started on http://localhost:3000/ 🌐\x1b[0m");
 		bot.armorManager.equipAll();
 		const mcData = require('minecraft-data')(bot.version)
 		const defaultMove = new Movements(bot, mcData)
