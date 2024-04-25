@@ -591,8 +591,8 @@ rl.on('line', (input) => {
 			sendToDiscord("Controls and chats snatched by console, go to console. 🤖");
 			discord = false;
 			if (discordClient) {
-			discordClient.destroy();
-			console.log("\x1b[1m \x1b[35m Discord client closed. 🤖\x1b[0m");
+				discordClient.destroy();
+				console.log("\x1b[1m \x1b[35m Discord client closed. 🤖\x1b[0m");
 			}
 			console.log("\x1b[1m \x1b[35m Console mode activated by force. 🤖\x1b[0m");
 		}
