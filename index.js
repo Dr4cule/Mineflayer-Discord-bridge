@@ -19,7 +19,7 @@ console.log(`
 
 
 
-
+\x1b[1m \x1b[35m
 
    Made by :-
 
@@ -32,7 +32,7 @@ $$ |  $$ |$$ |            $$ |$$ |      $$ |  $$ |$$ |$$   ____|
 $$$$$$$  |$$ |            $$ |\\$$$$$$$\\ \\$$$$$$  |$$ |\\$$$$$$$\ 
 \\_______/ \\__|            \\__| \\_______| \\______/ \\__| \\_______|
 
-        Welcome to Minecraft-Mineflayer-Discord-bridge 🤖🌍
+        Welcome to Minecraft-Mineflayer-Discord-bridge 🤖🌍    \x1b[0m
 `)
 
 const http = require('http');
@@ -89,7 +89,7 @@ async function createBot() {
 		if (discord) {
 			sendToDiscord(`Bot spawned 🙌`);
 		} else {
-			console.log("Bot spawned 🙌");
+			console.log("\x1b[1m \x1b[35m Bot spawned 🙌\x1b[0m");
 		}
 		mineflayerViewer(bot, {
 			port: 3000
@@ -136,7 +136,7 @@ async function createBot() {
 		if (discord) {
 			sendToDiscord(`Window opened 🔓`);
 		} else {
-			console.log(`Window opened 🔓`);
+			console.log(`\x1b[1m \x1b[35m Window opened 🔓\x1b[0m`);
 		}
 	});
 
@@ -144,7 +144,7 @@ async function createBot() {
 		if (discord) {
 			sendToDiscord(`Window closed 🔐`);
 		} else {
-			console.log(`Window closed 🔐`);
+			console.log(`\x1b[1m \x1b[35m Window closed 🔐\x1b[0m`);
 		}
 	});
 
@@ -156,7 +156,7 @@ async function createBot() {
 		if (discord) {
 			sendToDiscord(`Bot logged in 🙌`);
 		} else {
-			console.log(`Bot logged in 🙌`);
+			console.log(`\x1b[1m \x1b[35m Bot logged in 🙌\x1b[0m`);
 		}
 		bot.chat(`/register ${config.botPswd} ${config.botPswd}`);
 		setTimeout(() => bot.chat(`/login ${config.botPswd}`), 3000);
@@ -166,7 +166,7 @@ async function createBot() {
 			setInterval(() => {
 				const playerList = Object.keys(bot.players).join(', ');
 				const totalPlayers = Object.keys(bot.players).length;
-				console.log(`Players in tab list (${totalPlayers}): ${playerList}`);
+				console.log(`\x1b[1m \x1b[35m Players in tab list (${totalPlayers}): ${playerList}\x1b[0m`);
 			}, 5 * 60 * 1000);
 		}
 		setTimeout(() => {
@@ -195,7 +195,7 @@ async function createBot() {
 		if (discord) {
 			sendToDiscord("The bot has died. 💀 Respawning...");
 		} else {
-			console.log("The bot has died. 💀 Respawning...");
+			console.log("\x1b[1m \x1b[35m The bot has died. 💀 Respawning...\x1b[0m");
 		}
 		if (!bot.spawn) {
 			await sleep(5000); // Wait 5 seconds before respawning
@@ -204,7 +204,7 @@ async function createBot() {
 			if (discord) {
 				sendToDiscord("Bot 🤖 is already respawned, skipping respawn attempt.");
 			} else {
-				console.log("Bot 🤖 is already respawned, skipping respawn attempt.");
+				console.log("\x1b[1m \x1b[35m Bot 🤖 is already respawned, skipping respawn attempt.\x1b[0m");
 			}
 		}
 	});
@@ -223,7 +223,7 @@ async function createBot() {
 			const usernameStr = username;
 			if (config.BlockedMessages.some(blockedMessage => String(usernameStr).includes(blockedMessage)) || usernameStr.length === 0) return;
 
-			const playerName = sender ? (players[sender] || "") : "[Server]";
+			const playerName = sender ? (players[sender] || "") : "\x1b[1m \x1b[35m [Server]\x1b[0m";
 			if (discord) {
 				sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
 			} else {
@@ -238,7 +238,7 @@ async function createBot() {
 		if (discord) {
 			sendToDiscord("Bot encountered an error: 😞", err);
 		} else {
-			console.log("Bot encountered an error: 😞", err);
+			console.log("\x1b[1m \x1b[35m Bot encountered an error: 😞\x1b[0m", err);
 		}
 	});
 
@@ -246,7 +246,7 @@ async function createBot() {
 		if (discord){
 			sendToDiscord(`Bot was kicked from the server: 😞", ${reason}, Logged in: ${loggedIn}`);
 		} else {
-			console.log(`Bot was kicked from the server: 😞", ${reason}, Logged in: ${loggedIn}`);
+			console.log(`\x1b[1m \x1b[35m Bot was kicked from the server: 😞", ${reason}, Logged in: ${loggedIn} \x1b[0m`);
 		}
 	});
 	
@@ -254,7 +254,7 @@ async function createBot() {
 		if (discord) {
 			sendToDiscord("Bot disconnected from the server, attempting to reconnect... 🔄");
 		} else {
-			console.log("Bot disconnected from the server, attempting to reconnect... 🔄");
+			console.log("\x1b[1m \x1b[35m Bot disconnected from the server, attempting to reconnect... 🔄\x1b[0m");
 		}
 		if (bot.viewer) bot.viewer.close();
 		createBot();
@@ -415,7 +415,7 @@ function sendToDiscord(message, embedData = null) {
 				}
 			}
 		} else {
-			console.log(message);
+			console.log("\x1b[1m \x1b[35m Could not relay the message to discord\x1b[0m");
 		}
 	}
 }
@@ -431,7 +431,7 @@ if (discord){
 		res.end('Congrats you have created an ngrok web server');
 	});
 	
-	server.listen(4000, () => console.log('Node.js web server at 4000 is running...'));
+	server.listen(4000, () => console.log('\x1b[1m \x1b[35m Node.js web server at 4000 is running...\x1b[0m'));
 	
 	// Get your endpoint online
 	async function startNgrok() {
@@ -445,7 +445,7 @@ if (discord){
 				if (discord) {
 					sendToDiscord(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
 				} else {
-					console.log(`View what/where the bot doing/is at: ${listener.url()} 🌐`);
+					console.log(`\x1b[1m \x1b[35m View what/where the bot doing/is at: ${listener.url()} 🌐\x1b[0m`);
 				}
 			}, 30 * 1000);
 		} catch (error) {
@@ -490,11 +490,11 @@ rl.on('line', (input) => {
 	if (!discord) {
 		if (input === "/antiafk") {
 			isAntiAfkActive ? stopAntiAfkInterval() : startAntiAfkInterval();
-			console.log(isAntiAfkActive ? "Anti-AFK mode activated. 🚀" : "Anti-AFK mode deactivated. 🛑");
+			console.log(isAntiAfkActive ? "\x1b[1m \x1b[35m Anti-AFK mode activated. 🚀\x1b[0m" : "\x1b[1m \x1b[35m Anti-AFK mode deactivated. 🛑\x1b[0m");
 		} else if (input === "/listtab") {
 			const playerList = Object.keys(bot.players).join(', ');
 			const totalPlayers = Object.keys(bot.players).length;
-			console.log(`Players in tab list (${totalPlayers}): ${playerList}`);
+			console.log(`\x1b[1m \x1b[35m Players in tab list (${totalPlayers}): ${playerList}\x1b[0m`);
 		} else if (input === "/reconnect") {
 			bot.end();
 		} else if (input.startsWith("/Rclickslot")) {
@@ -503,13 +503,13 @@ rl.on('line', (input) => {
 				bot.setQuickBarSlot(slotNumber);
 				bot.activateItem();
 			} else {
-				console.log("There are only 9(0 to 8) slots in the hotbar! 🤔");
+				console.log("\x1b[1m \x1b[35m There are only 9(0 to 8) slots in the hotbar! 🤔\x1b[0m");
 			}
 		} else if (input.startsWith("/Lclickslot")) {
 			const slotNumber = parseInt(input.split(" ")[1]);
 			if (!isNaN(slotNumber)) {
 				if (slotNumber > 53) {
-					console.log("Slot number exceeds the maximum number of slots (53). 🤔");
+					console.log("\x1b[1m \x1b[35m Slot number exceeds the maximum number of slots (53). 🤔\x1b[0m");
 				} else {
 					bot.simpleClick.leftMouse(slotNumber, 0, 0);
 				}
@@ -518,38 +518,38 @@ rl.on('line', (input) => {
 			if (bot.currentWindow) {
 				bot.closeWindow(bot.currentWindow);
 			} else {
-				console.log("No windows are currently open. 📭");
+				console.log("\x1b[1m \x1b[35m No windows are currently open. 📭\x1b[0m");
 			}
 		} else if (input === "/health") {
 			const health = bot.health;
 			const healthValue = (health / 2).toFixed(1);
-			console.log(`Bot health: ${healthValue} ❤️`);
+			console.log(`\x1b[1m \x1b[35m Bot health: ${healthValue} ❤️\x1b[0m`);
 		} else if (input === "/coords") {
 			const {
 				x,
 				y,
 				z
 			} = bot.entity.position;
-			console.log(`Bot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`);
+			console.log(`\x1b[1m \x1b[35mBot coordinates 🌐 : (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})\x1b[0m`);
 		} else if (input === "/inv") {
 			const inventory = bot.inventory.items().filter(item => item !== null).map((item, index) => {
 				return `${item.name} x${item.count} (Slot ${index})`;
 			}).join(', ');
-			console.log(`Bot inventory 👀 : ${inventory}`);
+			console.log(`\x1b[1m \x1b[35m Bot inventory 👀 : ${inventory}\x1b[0m`);
 		} else if (input.startsWith("/yell ")) {
 			const yellMessage = input.slice(6);
 			bot.chat(`🗣️  ${yellMessage}`);
 		} else if (input === "/move") {
-			console.log('Bot moving 🏃‍♂️');
+			console.log('\x1b[1m \x1b[35m Bot moving 🏃‍♂️\x1b[0m');
 			bot.setControlState('forward', true);
 			setTimeout(() => {
 				bot.setControlState('forward', false);
 			}, 5000)
 		} else if (input === "/hunger") {
 			const hunger = (bot.food / 2).toFixed(1);
-			console.log(`Bot hunger: ${hunger} 🍖`);
+			console.log(`\x1b[1m \x1b[35m Bot hunger: ${hunger} 🍖\x1b[0m`);
 		} else if (input === "/todis") {
-			console.log("Discord mode activated, go to discord. 🎉");
+			console.log("\x1b[1m \x1b[35m Discord mode activated, go to discord. 🎉\x1b[0m");
 			discord = true;
 			if (discord){
 			discordClient = new Client({
@@ -560,7 +560,7 @@ rl.on('line', (input) => {
 				
 			}, 3000);
 			if (discordClient){
-			console.log("Discord bot connected");
+			console.log("\x1b[1m \x1b[35m Discord bot connected\x1b[0m");
 		
 			discordClient.on("messageCreate", (message) => {
 				if (discord){
@@ -586,7 +586,7 @@ rl.on('line', (input) => {
 		if (input === "/fpull"){
 			sendToDiscord("Controls and chats snatched by console, go to console. 🤖");
 			discord = false;
-			console.log("Console mode activated by force. 🤖");
+			console.log("\x1b[1m \x1b[35m Console mode activated by force. 🤖\x1b[0m");
 		}
 	}
 });
