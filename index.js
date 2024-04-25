@@ -220,14 +220,14 @@ async function createBot() {
 
 	bot.on('message', (username, message, sender) => {
 		if (typeof message === 'string') {
-			const usernameStr = String(username);
-			if (config.BlockedMessages.some(blockedMessage => usernameStr.includes(blockedMessage)) || usernameStr.length === 0) return;
+			const usernameStr = username;
+			if (config.BlockedMessages.some(blockedMessage => String(usernameStr).includes(blockedMessage)) || usernameStr.length === 0) return;
 
 			const playerName = sender ? (players[sender] || "") : "[Server]";
 			if (discord) {
 				sendToDiscord(`💬 ${playerName} » ${usernameStr}`);
 			} else {
-				console.log(`💬 ${playerName} » ${usernameStr}`);
+				console.log(`💬 ${playerName} » ${usernameStr.toAnsi()}`);
 			}
 		} else {
 			console.log("Received a non-string message:", message);
