@@ -19,6 +19,9 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 - it can be run without them in your local command prompt.
 
 ![MineflayerDiscordBot](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/8ef396ac-2d7e-4945-a4ef-dc7341a46240)
+
+![Command Prompt](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/526f6bd9-535f-42ea-95d0-755a784b74d9)
+
 ![Prismarine Viewer](https://github.com/Dr4cule/Mineflayer-Discord-bridge/assets/167135291/fe25df04-a17d-44e6-a900-095efe67cbf4)
 http://localhost:3000/
 
