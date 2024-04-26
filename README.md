@@ -170,4 +170,4 @@ node index.js
  Works on my machine 👍 💀 
  Hope it does on yours as well 😅
  
- [MIT](https://choosealicense.com/licenses/mit/)
+ [MIT](https://github.com/Dr4cule/Mineflayer-Discord-bridge?tab=MIT-1-ov-file)
