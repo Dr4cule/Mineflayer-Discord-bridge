@@ -26,9 +26,9 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 http://localhost:3000/
 
 ## -- Requirements -- 📋
-- Node.js (version 19 or 20, DO NOT USE HIGHER VERSIONS) 🚀
-- An ngrok account and authentication token 🔑 (Optional if preference is set to false, will send messages to console instead, same with discord token)
-- A Discord bot token 🤖
+- [Node.js](https://nodejs.org/en/download) (version 19 or 20, DO NOT USE HIGHER VERSIONS) 🚀
+- An [ngrok](https://dashboard.ngrok.com/get-started/setup/windows) account and [authentication token](https://dashboard.ngrok.com/get-started/your-authtoken) 🔑 (Optional if preference is set to false, will send messages to console instead, same with discord token.
+- A [Discord bot](https://discord.com/developers/applications) token 🤖
 - A Minecraft server to connect to 🏢
 
 ## -- Installation -- 🛠️
@@ -63,7 +63,7 @@ To get the discord channel id and discord user ids:
 
 ```
 pkg update && pkg upgrade
-pkg install nodejs=20.11.1 git
+pkg install nodejs-lts git
 git clone https://github.com/Dr4cule/Mineflayer-Discord-bridge.git
 cd Mineflayer-Discord-bridge
 npm install
