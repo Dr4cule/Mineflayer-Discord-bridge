@@ -152,7 +152,7 @@ async function createBot() {
 	// 	sendToDiscord(`😋 Ate ${item.name} from ${offhand ? 'offhand' : 'hand'}`)
 	// })
 
-	bot.on("login", () => {
+	bot.once("login", () => {
 		if (discord) {
 			sendToDiscord(`Bot logged in 🙌`);
 		} else {
