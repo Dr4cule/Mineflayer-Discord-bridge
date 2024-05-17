@@ -26,7 +26,7 @@ A simple mineflayer bot that logs messages and has some cool features 🎉
 http://localhost:3000/
 
 ## -- Requirements -- 📋
-- [Node.js](https://nodejs.org/en/download) (version 19 or 20, DO NOT USE HIGHER VERSIONS) 🚀
+- [Node.js](https://nodejs.org/en/download/prebuilt-installer) (version 19 or 20, DO NOT USE HIGHER VERSIONS) 🚀
 - An [ngrok](https://dashboard.ngrok.com/get-started/setup/windows) account and [authentication token](https://dashboard.ngrok.com/get-started/your-authtoken) 🔑 (Optional if preference is set to false, will send messages to console instead, same with discord token.
 - A [Discord bot](https://discord.com/developers/applications) token 🤖
 - A Minecraft server to connect to 🏢
